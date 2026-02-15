@@ -59,7 +59,13 @@ class I18n {
    * @example t('Press key to search', { key: 'Ctrl+K' })
    */
   t(key: TranslationKey, params?: Record<string, string | number>): string {
-    const translation = translations[this.currentLanguage][key];
+    const langTranslations = translations[this.currentLanguage];
+    if (!langTranslations) {
+      console.warn(`[i18n] Missing translations for language: ${this.currentLanguage}`);
+      return key;
+    }
+
+    const translation = langTranslations[key];
 
     if (!translation) {
       console.warn(`[i18n] Missing translation for key: ${key}`);
@@ -77,7 +83,8 @@ class I18n {
    * Check if a translation key exists
    */
   has(key: TranslationKey): boolean {
-    return key in translations[this.currentLanguage];
+    const langTranslations = translations[this.currentLanguage];
+    return langTranslations ? key in langTranslations : false;
   }
 
   /**

@@ -3,8 +3,7 @@
  * Provides a dropdown for switching between languages
  */
 
-import { i18n, t, type Language } from '@/i18n';
-import type { TranslationKey } from '@/i18n';
+import { i18n, type Language } from '@/i18n';
 
 export class LanguageSwitcher {
   private element: HTMLElement;

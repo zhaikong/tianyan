@@ -15,7 +15,7 @@ export interface Translations {
   'drag to resize': string;
   'double-click to reset': string;
 
-  // Panel titles
+  // Panel titles & Map layer names (统一键名，避免重复)
   'Live News': string;
   'Live Intelligence': string;
   Insights: string;
@@ -23,23 +23,23 @@ export interface Translations {
   'Strategic Risk': string;
   'Country Instability': string;
   'Infrastructure Cascade': string;
-  'Conflicts': string;
-  'Protests': string;
+  Conflicts: string;
+  Protests: string;
   'Natural Events': string;
   'Economic Data': string;
-  'Markets': string;
-  'Crypto': string;
-  'Commodities': string;
-  'Predictions': string;
+  Markets: string;
+  Crypto: string;
+  Commodities: string;
+  Predictions: string;
   'Military Flights': string;
   'Military Vessels': string;
   'AIS Ships': string;
   'Internet Outages': string;
-  'Earthquakes': string;
+  Earthquakes: string;
   'Weather Alerts': string;
   'Climate Anomalies': string;
   'Population Exposure': string;
-  'Displacement': string;
+  Displacement: string;
   'ETF Flows': string;
   'Stablecoin Markets': string;
   'Macro Signals': string;
@@ -48,11 +48,8 @@ export interface Translations {
   'Tech Hubs': string;
   'Geo Hubs': string;
   'Satellite Fires': string;
-  'Regulation': string;
+  Regulation: string;
   'Desktop Configuration': string;
-
-  // Map layer names
-  Conflicts: string;
   Hotspots: string;
   Bases: string;
   Nuclear: string;
@@ -63,21 +60,15 @@ export interface Translations {
   Waterways: string;
   Sanctions: string;
   Military: string;
-  'Military Flights': string;
-  'Military Vessels': string;
-  Protests: string;
   AIS: string;
   Outages: string;
   Natural: string;
   Weather: string;
   Climate: string;
-  Earthquakes: string;
-  Displacement: string;
   'UCDP Events': string;
   'Tech HQs': string;
   'AI Labs': string;
   'Startup Hubs': string;
-  'Tech Events': string;
   Investors: string;
   Acquisitions: string;
   'Conf Tech': string;
@@ -114,11 +105,6 @@ export interface Translations {
   'No AI service available': string;
   'Stock Index': string;
   'Prediction Markets': string;
-  'Protests': string;
-  'Military Flights': string;
-  'Military Vessels': string;
-  'Internet Outages': string;
-  'Earthquakes': string;
   Unrest: string;
   Conflict: string;
   Security: string;
