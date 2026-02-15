@@ -1,6 +1,86 @@
 import type { PanelConfig, MapLayers } from '@/types';
 import { SITE_VARIANT } from './variant';
 
+// 翻译键映射表 - 用于面板名称的动态翻译
+const PANEL_TRANSLATION_KEYS: Record<string, string> = {
+  // Full Variant
+  map: 'Global Map',
+  'live-news': 'Live News',
+  insights: 'Insights',
+  'strategic-posture': 'Strategic Posture',
+  cii: 'Country Instability',
+  'strategic-risk': 'Strategic Risk',
+  intel: 'Live Intelligence',
+  'gdelt-intel': 'Live Intelligence',
+  cascade: 'Infrastructure Cascade',
+  politics: 'World News',
+  middleeast: 'Middle East',
+  africa: 'Africa',
+  latam: 'Latin America',
+  asia: 'Asia-Pacific',
+  energy: 'Energy & Resources',
+  gov: 'Government',
+  thinktanks: 'Think Tanks',
+  polymarket: 'Predictions',
+  commodities: 'Commodities',
+  markets: 'Markets',
+  economic: 'Economic Data',
+  finance: 'Financial',
+  tech: 'Technology',
+  crypto: 'Crypto',
+  heatmap: 'Sector Heatmap',
+  ai: 'AI/ML',
+  layoffs: 'Layoffs Tracker',
+  monitors: 'My Monitors',
+  'satellite-fires': 'Satellite Fires',
+  'macro-signals': 'Macro Signals',
+  'etf-flows': 'ETF Flows',
+  stablecoins: 'Stablecoin Markets',
+  'runtime-config': 'Desktop Configuration',
+  'ucdp-events': 'UCDP Events',
+  displacement: 'Displacement',
+  climate: 'Climate Anomalies',
+  'population-exposure': 'Population Exposure',
+
+  // Tech Variant
+  'live-news-tech': 'Tech Headlines',
+  startups: 'Startups & VC',
+  vcblogs: 'VC Insights',
+  regionalStartups: 'Global Startup News',
+  unicorns: 'Unicorn Tracker',
+  accelerators: 'Accelerators',
+  security: 'Cybersecurity',
+  policy: 'AI Policy',
+  regulation: 'Regulation',
+  hardware: 'Hardware',
+  cloud: 'Cloud Infrastructure',
+  dev: 'Developer Community',
+  github: 'GitHub Trending',
+  ipo: 'IPO & SPAC',
+  funding: 'Funding & VC',
+  producthunt: 'Product Hunt',
+  events: 'Tech Events',
+  'service-status': 'Service Status',
+  'tech-readiness': 'Tech Readiness',
+};
+
+// 获取面板名称（支持i18n）
+export function getPanelName(panelId: string): string {
+  // 动态导入i18n避免循环依赖
+  const translationKey = PANEL_TRANSLATION_KEYS[panelId];
+  if (!translationKey) return panelId;
+
+  try {
+    // 尝试从全局获取i18n实例
+    if (typeof window !== 'undefined' && (window as any).i18n) {
+      return (window as any).i18n.t(translationKey);
+    }
+  } catch {
+    // 回退到英文键名
+  }
+  return translationKey;
+}
+
 // ============================================
 // FULL VARIANT (Geopolitical)
 // ============================================
@@ -243,8 +323,8 @@ export const MONITOR_COLORS = [
 ];
 
 export const STORAGE_KEYS = {
-  panels: 'worldmonitor-panels',
-  monitors: 'worldmonitor-monitors',
-  mapLayers: 'worldmonitor-layers',
-  disabledFeeds: 'worldmonitor-disabled-feeds',
+  panels: 'tianyan-panels',
+  monitors: 'tianyan-monitors',
+  mapLayers: 'tianyan-layers',
+  disabledFeeds: 'tianyan-disabled-feeds',
 } as const;

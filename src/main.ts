@@ -6,6 +6,14 @@ import { debugInjectTestEvents, debugGetCells, getCellCount } from '@/services/g
 import { initMetaTags } from '@/services/meta-tags';
 import { installRuntimeFetchPatch } from '@/services/runtime';
 import { loadDesktopSecrets } from '@/services/runtime-config';
+import { i18n } from '@/i18n';
+
+// Initialize i18n system (must be first)
+i18n.init();
+
+// Expose i18n to global scope for dynamic translation in configs
+(window as any).i18n = i18n;
+(window as any).t = i18n.t.bind(i18n);
 
 // Initialize Vercel Analytics
 inject();

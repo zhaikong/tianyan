@@ -75,6 +75,50 @@ export interface Translations {
   'Gaming Hubs': string;
   'Launch Sites': string;
 
+  // 额外面板名称
+  'Global Map': string;
+  'AI Insights': string;
+  'AI Strategic Posture': string;
+  'Strategic Risk Overview': string;
+  'Intel Feed': string;
+  'World News': string;
+  'Middle East': string;
+  'Africa': string;
+  'Latin America': string;
+  'Asia-Pacific': string;
+  'Energy & Resources': string;
+  'Government': string;
+  'Think Tanks': string;
+  'Financial': string;
+  'Technology': string;
+  'Sector Heatmap': string;
+  'AI/ML': string;
+  'Layoffs Tracker': string;
+  'My Monitors': string;
+  'Market Radar': string;
+  'Stablecoins': string;
+  'UNHCR Displacement': string;
+  'BTC ETF Tracker': string;
+  'Economic Indicators': string;
+  'Tech Headlines': string;
+  'Startups & VC': string;
+  'VC Insights': string;
+  'Global Startup News': string;
+  'Unicorn Tracker': string;
+  'Accelerators': string;
+  'Cybersecurity': string;
+  'AI Policy': string;
+  'AI Regulation Dashboard': string;
+  'Hardware': string;
+  'Cloud Infrastructure': string;
+  'Developer Community': string;
+  'GitHub Trending': string;
+  'IPO & SPAC': string;
+  'Funding & VC': string;
+  'Product Hunt': string;
+  'Service Status': string;
+  'Tech Readiness': string;
+
   // Map controls
   'Zoom In': string;
   'Zoom Out': string;
@@ -231,6 +275,50 @@ export const translations: Record<string, Translations> = {
     'Gaming Hubs': 'Gaming Hubs',
     'Launch Sites': 'Launch Sites',
 
+    // 额外面板名称
+    'Global Map': 'Global Map',
+    'AI Insights': 'AI Insights',
+    'AI Strategic Posture': 'AI Strategic Posture',
+    'Strategic Risk Overview': 'Strategic Risk Overview',
+    'Intel Feed': 'Intel Feed',
+    'World News': 'World News',
+    'Middle East': 'Middle East',
+    'Africa': 'Africa',
+    'Latin America': 'Latin America',
+    'Asia-Pacific': 'Asia-Pacific',
+    'Energy & Resources': 'Energy & Resources',
+    'Government': 'Government',
+    'Think Tanks': 'Think Tanks',
+    'Financial': 'Financial',
+    'Technology': 'Technology',
+    'Sector Heatmap': 'Sector Heatmap',
+    'AI/ML': 'AI/ML',
+    'Layoffs Tracker': 'Layoffs Tracker',
+    'My Monitors': 'My Monitors',
+    'Market Radar': 'Market Radar',
+    'Stablecoins': 'Stablecoins',
+    'UNHCR Displacement': 'UNHCR Displacement',
+    'BTC ETF Tracker': 'BTC ETF Tracker',
+    'Economic Indicators': 'Economic Indicators',
+    'Tech Headlines': 'Tech Headlines',
+    'Startups & VC': 'Startups & VC',
+    'VC Insights': 'VC Insights',
+    'Global Startup News': 'Global Startup News',
+    'Unicorn Tracker': 'Unicorn Tracker',
+    'Accelerators': 'Accelerators',
+    'Cybersecurity': 'Cybersecurity',
+    'AI Policy': 'AI Policy',
+    'AI Regulation Dashboard': 'AI Regulation Dashboard',
+    'Hardware': 'Hardware',
+    'Cloud Infrastructure': 'Cloud Infrastructure',
+    'Developer Community': 'Developer Community',
+    'GitHub Trending': 'GitHub Trending',
+    'IPO & SPAC': 'IPO & SPAC',
+    'Funding & VC': 'Funding & VC',
+    'Product Hunt': 'Product Hunt',
+    'Service Status': 'Service Status',
+    'Tech Readiness': 'Tech Readiness',
+
     // Map controls
     'Zoom In': 'Zoom In',
     'Zoom Out': 'Zoom Out',
@@ -385,6 +473,50 @@ export const translations: Record<string, Translations> = {
     'Conf Tech': '会议科技',
     'Gaming Hubs': '游戏中心',
     'Launch Sites': '发射场',
+
+    // 额外面板名称
+    'Global Map': '全球地图',
+    'AI Insights': 'AI 洞察',
+    'AI Strategic Posture': 'AI 战略态势',
+    'Strategic Risk Overview': '战略风险概览',
+    'Intel Feed': '情报源',
+    'World News': '世界新闻',
+    'Middle East': '中东',
+    'Africa': '非洲',
+    'Latin America': '拉美',
+    'Asia-Pacific': '亚太',
+    'Energy & Resources': '能源资源',
+    'Government': '政府',
+    'Think Tanks': '智库',
+    'Financial': '金融',
+    'Technology': '科技',
+    'Sector Heatmap': '板块热图',
+    'AI/ML': 'AI/机器学习',
+    'Layoffs Tracker': '裁员追踪',
+    'My Monitors': '我的监控',
+    'Market Radar': '市场雷达',
+    'Stablecoins': '稳定币',
+    'UNHCR Displacement': '难民流离',
+    'BTC ETF Tracker': 'BTC ETF 追踪',
+    'Economic Indicators': '经济指标',
+    'Tech Headlines': '科技头条',
+    'Startups & VC': '创业与风投',
+    'VC Insights': '风投洞察',
+    'Global Startup News': '全球创业新闻',
+    'Unicorn Tracker': '独角兽追踪',
+    'Accelerators': '加速器',
+    'Cybersecurity': '网络安全',
+    'AI Policy': 'AI 政策',
+    'AI Regulation Dashboard': 'AI 监管仪表盘',
+    'Hardware': '硬件',
+    'Cloud Infrastructure': '云基础设施',
+    'Developer Community': '开发者社区',
+    'GitHub Trending': 'GitHub 热门',
+    'IPO & SPAC': 'IPO 与 SPAC',
+    'Funding & VC': '融资与风投',
+    'Product Hunt': 'Product Hunt',
+    'Service Status': '服务状态',
+    'Tech Readiness': '科技就绪度',
 
     // Map controls
     'Zoom In': '放大',
