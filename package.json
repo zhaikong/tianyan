@@ -1,8 +1,11 @@
 {
-  "name": "world-monitor",
+  "name": "tianyan",
   "private": true,
   "version": "2.2.2",
   "type": "module",
+  "description": "天眼 - 实时全球态势感知与情报分析平台",
+  "author": "TianYan Team <contact@tianyan.app>",
+  "license": "PROPRIETARY",
   "scripts": {
     "dev": "vite",
     "dev:tech": "VITE_VARIANT=tech vite",

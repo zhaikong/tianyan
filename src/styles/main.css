@@ -1,17 +1,119 @@
+/* ============================================
+   天眼 - 国潮商务风配色方案
+   中国红: #C8202D
+   金色点缀: #D4AF37
+   深色背景: #0A0F1A
+   ============================================ */
+
 :root {
-  --bg: #0a0a0a;
-  --surface: #141414;
-  --border: #2a2a2a;
-  --text: #e8e8e8;
-  --text-dim: #888;
-  --accent: #fff;
-  --red: #ff4444;
-  --green: #44ff88;
-  --yellow: #ffaa00;
+  /* 主色系 - 国潮红金配色 */
+  --bg-primary: #C8202D;
+  --surface-primary: #141414;
+  --surface-secondary: #1A1F26;
+  --surface-tertiary: #0A1621;
+  --border: #2A2A2A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E8E8E8;
+  --text-tertiary: #94A3B8;
+
+  /* 扩展红色系 */
+  --red-50: #FFF1F2;
+  --red-100: #FEE2E4;
+  --red-200: #FEC5C8;
+  --red-300: #FDA4A9;
+  --red-400: #FB7179;
+  --red-500: #C8202D;
+  --red-600: #A31824;
+  --red-700: #7E121A;
+
+  /* 扩展金色系 */
+  --gold-50: #FEF9E7;
+  --gold-100: #FCF2CC;
+  --gold-200: #F8E9B3;
+  --gold-300: #F3DD99;
+  --gold-400: #ECCD75;
+  --gold-500: #D4AF37;
+  --gold-600: #B89530;
+  --gold-700: #9C7B29;
+
+  /* 功能色 */
+  --accent-red: #FF6B6B;
+  --accent-gold: #D4AF37;
+  --accent-orange: #FF9F4C;
+  --success: #34A053;
+  --warning: #FFA934;
+  --error: #E74C3C;
+  --info-blue: #3498DB;
+
+  /* 地图配色 */
   --map-bg: #020a08;
   --map-grid: #0a2a20;
   --map-country: #0a2018;
   --map-stroke: #0f5040;
+
+  /* 通用变量（兼容上游） */
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --text: #e8e8e8;
+  --text-dim: #888;
+  --accent: #fff;
+  --red: #ff4444;
+  --green: #D4AF37;
+  --yellow: #ffaa00;
+
+  /* 语义化别名 */
+  --overlay-bg: rgba(10, 10, 16, 0.9);
+  --card-bg: rgba(26, 26, 31, 0.95);
+  --panel-bg: rgba(20, 20, 30, 0.9);
+  --hover-bg: rgba(255, 255, 255, 0.06);
+  --map-water: rgba(30, 144, 255, 0.15);
+  --map-land: rgba(200, 200, 190, 0.8);
+
+  /* 字体系统 */
+  --font-sans: 'PingFang SC', 'Microsoft YaHei', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+
+  /* 间距系统 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  /* 圆角系统 */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+
+  /* 边框系统 */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(212, 175, 55, 0.3);
+
+  /* 阴影系统 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.7);
+
+  /* 光晕效果 */
+  --glow-sm: 0 0 8px rgba(200, 32, 45, 0.3);
+  --glow-md: 0 0 16px rgba(200, 32, 45, 0.4);
+  --glow-lg: 0 0 24px rgba(200, 32, 45, 0.5);
+  --gold-glow-sm: 0 0 8px rgba(212, 175, 55, 0.3);
+  --gold-glow-md: 0 0 16px rgba(212, 175, 55, 0.4);
+
+  /* 内阴影 */
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -27,11 +129,11 @@ html {
 }
 
 body {
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  font-family: var(--font-sans), var(--font-mono), sans-serif;
   font-size: 12px;
   line-height: 1.5;
-  background: var(--bg);
-  color: var(--text);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   overflow: hidden;
   height: 100%;
   width: 100%;
@@ -133,23 +235,23 @@ body.animations-paused *::after {
 }
 
 .variant-option.active {
-  color: var(--green);
-  background: rgba(68, 255, 136, 0.1);
+  color: var(--accent-gold);
+  background: rgba(212, 175, 55, 0.1);
   pointer-events: none;
 }
 
 
 .variant-option.active .variant-icon {
-  filter: grayscale(0%) drop-shadow(0 0 4px var(--green));
+  filter: grayscale(0%) drop-shadow(0 0 4px var(--accent-gold));
 }
 
 .variant-option[data-variant="tech"].active {
-  color: #4a9eff;
-  background: rgba(74, 158, 255, 0.1);
+  color: var(--accent-red);
+  background: rgba(200, 32, 45, 0.1);
 }
 
 .variant-option[data-variant="tech"].active .variant-icon {
-  filter: grayscale(0%) drop-shadow(0 0 4px #4a9eff);
+  filter: grayscale(0%) drop-shadow(0 0 4px var(--accent-red));
 }
 
 .variant-divider {
@@ -168,7 +270,18 @@ body.animations-paused *::after {
   font-weight: bold;
   font-size: 14px;
   letter-spacing: 2px;
-  color: var(--accent);
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
 }
 
 .version {
@@ -242,12 +355,12 @@ body.animations-paused *::after {
 }
 
 .region-select:hover {
-  border-color: var(--green);
+  border-color: var(--accent-gold);
 }
 
 .region-select:focus {
   outline: none;
-  border-color: var(--green);
+  border-color: var(--accent-gold);
 }
 
 .header-center {
@@ -498,13 +611,13 @@ body.animations-paused *::after {
 }
 
 .map-pin-btn.active {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
   color: var(--bg);
 }
 
 .map-pin-btn.active:hover {
-  background: var(--green-dim);
+  background: rgba(212, 175, 55, 0.15);
 }
 
 .panels-grid {
@@ -969,7 +1082,7 @@ body.animations-paused *::after {
 }
 
 .live-mute-btn.unmuted {
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .live-indicator-btn {
@@ -1301,7 +1414,7 @@ body.animations-paused *::after {
 
 .top-source.tier-1 {
   background: rgba(0, 255, 136, 0.15);
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .top-source.tier-2 {
@@ -1326,7 +1439,7 @@ body.animations-paused *::after {
 
 .tier-badge.tier-1 {
   background: linear-gradient(135deg, rgba(0, 255, 136, 0.25), rgba(0, 200, 100, 0.15));
-  color: var(--green);
+  color: var(--accent-gold);
   border: 1px solid rgba(0, 255, 136, 0.4);
 }
 
@@ -1469,7 +1582,7 @@ body.animations-paused *::after {
 }
 
 .sentiment-badge.positive {
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 /* Deviation indicators */
@@ -1584,7 +1697,7 @@ body.animations-paused *::after {
 }
 
 .signal-item.silent_divergence {
-  border-left-color: var(--green);
+  border-left-color: var(--accent-gold);
 }
 
 .signal-item.convergence {
@@ -1778,7 +1891,7 @@ body.animations-paused *::after {
   text-align: center;
   margin-top: 8px;
   font-size: 12px;
-  color: var(--green);
+  color: var(--accent-gold);
   font-weight: bold;
 }
 
@@ -2017,8 +2130,8 @@ body.playback-mode .status-dot {
 }
 
 .layer-toggles:not(.deckgl-layer-toggles) .layer-toggle.active {
-  color: var(--green);
-  border-color: var(--green);
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
 }
 
 .layer-toggles:not(.deckgl-layer-toggles) .layer-toggle.auto-hidden {
@@ -2138,10 +2251,10 @@ body.playback-mode .status-dot {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--green);
+  color: var(--accent-gold);
   margin-bottom: 6px;
   padding-left: 4px;
-  border-left: 2px solid var(--green);
+  border-left: 2px solid var(--accent-gold);
 }
 
 .layer-help-item {
@@ -3558,7 +3671,7 @@ a.prediction-link:hover {
   left: 50%;
   width: 50%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #44ff88);
+  background: linear-gradient(90deg, transparent, var(--accent-gold));
   transform-origin: left center;
   animation: panel-radar-sweep 2s linear infinite;
 }
@@ -3570,9 +3683,9 @@ a.prediction-link:hover {
   width: 6px;
   height: 6px;
   margin: -3px;
-  background: #44ff88;
+  background: #D4AF37;
   border-radius: 50%;
-  box-shadow: 0 0 10px #44ff88;
+  box-shadow: 0 0 10px var(--accent-gold);
 }
 
 @keyframes panel-radar-sweep {
@@ -3665,7 +3778,7 @@ a.prediction-link:hover {
 }
 
 .panel-toggle-item.active {
-  border-color: var(--green);
+  border-color: var(--accent-gold);
 }
 
 .panel-toggle-checkbox {
@@ -3679,8 +3792,8 @@ a.prediction-link:hover {
 }
 
 .panel-toggle-item.active .panel-toggle-checkbox {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
   color: var(--bg);
 }
 
@@ -3760,7 +3873,7 @@ a.prediction-link:hover {
 }
 
 .source-toggle-item.active {
-  border-color: var(--green);
+  border-color: var(--accent-gold);
 }
 
 .source-toggle-checkbox {
@@ -3775,8 +3888,8 @@ a.prediction-link:hover {
 }
 
 .source-toggle-item.active .source-toggle-checkbox {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
   color: var(--bg);
 }
 
@@ -3871,7 +3984,7 @@ a.prediction-link:hover {
 }
 
 .popup-header.hotspot .popup-title {
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .popup-header.earthquake .popup-title {
@@ -3933,7 +4046,7 @@ a.prediction-link:hover {
 
 .popup-subtitle {
   font-size: 12px;
-  color: var(--green);
+  color: var(--accent-gold);
   margin-bottom: 12px;
   letter-spacing: 0.5px;
 }
@@ -3973,7 +4086,7 @@ a.prediction-link:hover {
 
 .stat-value {
   font-size: 12px;
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .popup-section {
@@ -4056,7 +4169,7 @@ a.prediction-link:hover {
 
 .popup-link {
   display: inline-block;
-  color: var(--green);
+  color: var(--accent-gold);
   text-decoration: none;
   font-size: 11px;
   margin-top: 8px;
@@ -4735,7 +4848,7 @@ a.prediction-link:hover {
 }
 
 .mineral-marker.producing .mineral-icon {
-  filter: drop-shadow(0 0 6px #44ff88) drop-shadow(0 0 12px #44ff8860);
+  filter: drop-shadow(0 0 6px var(--accent-gold)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.38));
 }
 
 .mineral-marker.developing .mineral-icon {
@@ -4769,7 +4882,7 @@ a.prediction-link:hover {
 }
 
 .mineral-marker.producing .mineral-label {
-  color: #44ff88;
+  color: #D4AF37;
 }
 
 .mineral-marker.developing .mineral-label {
@@ -4783,7 +4896,7 @@ a.prediction-link:hover {
 }
 
 .popup-header.mineral.producing {
-  border-left-color: #44ff88;
+  border-left-color: #D4AF37;
 }
 
 .popup-header.mineral.developing {
@@ -5268,7 +5381,7 @@ a.prediction-link:hover {
 }
 
 .indicator-value .change.positive {
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .indicator-value .change.negative {
@@ -5320,7 +5433,7 @@ a.prediction-link:hover {
 
 .economic-tab.active {
   background: rgba(68, 255, 136, 0.2);
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .economic-content {
@@ -5347,7 +5460,7 @@ a.prediction-link:hover {
 .spending-total {
   font-size: 14px;
   font-weight: 600;
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .spending-period {
@@ -5373,7 +5486,7 @@ a.prediction-link:hover {
 
 .spending-award:hover {
   background: rgba(255, 255, 255, 0.04);
-  border-left-color: var(--green);
+  border-left-color: var(--accent-gold);
 }
 
 .award-header {
@@ -5390,7 +5503,7 @@ a.prediction-link:hover {
 .award-amount {
   font-size: 12px;
   font-weight: 600;
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .award-recipient {
@@ -5512,7 +5625,7 @@ a.prediction-link:hover {
 }
 
 .search-result-item.selected {
-  border-left: 2px solid var(--green);
+  border-left: 2px solid var(--accent-gold);
 }
 
 .search-result-icon {
@@ -5536,7 +5649,7 @@ a.prediction-link:hover {
 
 .search-result-title mark {
   background: rgba(68, 255, 136, 0.3);
-  color: var(--green);
+  color: var(--accent-gold);
   padding: 0 2px;
   border-radius: 2px;
 }
@@ -5609,7 +5722,7 @@ a.prediction-link:hover {
 }
 
 .flight-delay-marker.normal {
-  --flight-color: #44ff88;
+  --flight-color: #D4AF37;
 }
 
 .flight-delay-marker.minor {
@@ -5657,7 +5770,7 @@ a.prediction-link:hover {
 }
 
 .popup-header.flight.normal {
-  --flight-color: #44ff88;
+  --flight-color: #D4AF37;
 }
 
 .popup-header.flight.minor {
@@ -7420,8 +7533,8 @@ a.prediction-link:hover {
 
 .cascade-filter-btn.active {
   background: rgba(68, 255, 136, 0.15);
-  border-color: var(--green);
-  color: var(--green);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
 }
 
 .cascade-select {
@@ -7561,7 +7674,7 @@ a.prediction-link:hover {
 
 .cascade-redundancy-capacity {
   font-size: 11px;
-  color: var(--green);
+  color: var(--accent-gold);
   font-weight: bold;
 }
 
@@ -9038,7 +9151,7 @@ a.prediction-link:hover {
 }
 
 .tech-event.is-this-week:not(.is-today) {
-  border-left-color: var(--green);
+  border-left-color: var(--accent-gold);
 }
 
 .tech-event.type-conference {
@@ -9295,7 +9408,7 @@ a.prediction-link:hover {
 }
 
 .service-status-summary .summary-item.operational .summary-count {
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .service-status-summary .summary-item.degraded .summary-count {
@@ -9377,7 +9490,7 @@ a.prediction-link:hover {
 
 .service-status-item .status-badge.operational {
   background: rgba(0, 200, 83, 0.15);
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .service-status-item .status-badge.degraded {
@@ -9399,7 +9512,7 @@ a.prediction-link:hover {
   text-align: center;
   padding: 12px;
   font-size: 10px;
-  color: var(--green);
+  color: var(--accent-gold);
   background: rgba(0, 200, 83, 0.1);
   border-radius: 4px;
   margin-top: 8px;
@@ -9481,7 +9594,7 @@ a.prediction-link:hover {
 
 .deckgl-controls .map-btn:hover {
   background: rgba(30, 40, 35, 0.95);
-  border-color: var(--green);
+  border-color: var(--accent-gold);
 }
 
 .deckgl-controls .view-selector {
@@ -9501,7 +9614,7 @@ a.prediction-link:hover {
 }
 
 .deckgl-controls .view-select:hover {
-  border-color: var(--green);
+  border-color: var(--accent-gold);
 }
 
 /* deck.gl Time Slider */
@@ -9533,13 +9646,13 @@ a.prediction-link:hover {
 }
 
 .deckgl-time-slider .time-btn:hover {
-  border-color: var(--green);
-  color: var(--green);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
 }
 
 .deckgl-time-slider .time-btn.active {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
   color: var(--bg);
   font-weight: bold;
 }
@@ -9635,8 +9748,8 @@ a.prediction-link:hover {
 }
 
 .deckgl-layer-toggles .layer-toggle input[type="checkbox"]:checked {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
 }
 
 .deckgl-layer-toggles .layer-toggle input[type="checkbox"]:checked::after {
@@ -9679,7 +9792,7 @@ a.prediction-link:hover {
 }
 
 .deckgl-layer-toggles .layer-toggle.has-data .toggle-label {
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .deckgl-layer-toggles .layer-toggle.has-data {
@@ -9841,7 +9954,7 @@ a.prediction-link:hover {
   right: 170px;
   z-index: 99;
   background: rgba(0, 200, 100, 0.15);
-  color: var(--green);
+  color: var(--accent-gold);
   padding: 2px 6px;
   border-radius: 2px;
   font-size: 8px;
@@ -10156,7 +10269,7 @@ a.prediction-link:hover {
 
 .insight-badge.confirmed {
   background: rgba(74, 222, 128, 0.15);
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .insight-badge.multi {
@@ -10252,7 +10365,7 @@ a.prediction-link:hover {
 }
 
 .sentiment-label.positive {
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 .sentiment-tone {
@@ -10267,7 +10380,7 @@ a.prediction-link:hover {
 }
 
 .sentiment-tone.positive {
-  color: var(--green);
+  color: var(--accent-gold);
 }
 
 /* ML-Detected Stories Section */
@@ -10895,7 +11008,7 @@ body.has-critical-banner .panels-grid {
   left: 50%;
   width: 50%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #44ff88);
+  background: linear-gradient(90deg, transparent, var(--accent-gold));
   transform-origin: left center;
   animation: radar-sweep 2s linear infinite;
 }
@@ -10907,9 +11020,9 @@ body.has-critical-banner .panels-grid {
   width: 8px;
   height: 8px;
   margin: -4px;
-  background: #44ff88;
+  background: #D4AF37;
   border-radius: 50%;
-  box-shadow: 0 0 12px #44ff88;
+  box-shadow: 0 0 12px var(--accent-gold);
 }
 
 @keyframes radar-sweep {
@@ -10941,7 +11054,7 @@ body.has-critical-banner .panels-grid {
 }
 
 .posture-stage.active {
-  color: #44ff88;
+  color: #D4AF37;
 }
 
 .posture-stage.complete {
@@ -10957,8 +11070,8 @@ body.has-critical-banner .panels-grid {
 }
 
 .posture-stage.active .posture-stage-dot {
-  background: #44ff88;
-  box-shadow: 0 0 8px #44ff88;
+  background: #D4AF37;
+  box-shadow: 0 0 8px var(--accent-gold);
   animation: pulse-dot 1s ease-in-out infinite;
 }
 
