@@ -30,6 +30,7 @@ export interface Translations {
   Markets: string;
   Crypto: string;
   Commodities: string;
+  'Commodities / VIX': string;
   Predictions: string;
   'Military Flights': string;
   'Military Vessels': string;
@@ -82,7 +83,12 @@ export interface Translations {
   'Strategic Risk Overview': string;
   'Intel Feed': string;
   'World News': string;
+  'World / Geopolitical': string;
+  'Technology / AI': string;
+  'Financial News': string;
+  'Government / Policy': string;
   'Middle East': string;
+  'Middle East / MENA': string;
   'Africa': string;
   'Latin America': string;
   'Asia-Pacific': string;
@@ -93,6 +99,7 @@ export interface Translations {
   'Technology': string;
   'Sector Heatmap': string;
   'AI/ML': string;
+  'AI / ML': string;
   'Layoffs Tracker': string;
   'My Monitors': string;
   'Market Radar': string;
@@ -103,9 +110,11 @@ export interface Translations {
   'Tech Headlines': string;
   'Startups & VC': string;
   'VC Insights': string;
+  'VC Insights & Essays': string;
   'Global Startup News': string;
   'Unicorn Tracker': string;
   'Accelerators': string;
+  'Accelerators & Demo Days': string;
   'Cybersecurity': string;
   'AI Policy': string;
   'AI Regulation Dashboard': string;
@@ -118,6 +127,9 @@ export interface Translations {
   'Product Hunt': string;
   'Service Status': string;
   'Tech Readiness': string;
+  'AI Policy & Regulation': string;
+  'Semiconductors & Hardware': string;
+  'Cloud & Infrastructure': string;
 
   // Map controls
   'Zoom In': string;
@@ -228,6 +240,7 @@ export const translations: Record<string, Translations> = {
     Markets: 'Markets',
     Crypto: 'Crypto',
     Commodities: 'Commodities',
+    'Commodities / VIX': 'Commodities / VIX',
     Predictions: 'Predictions',
     'Military Flights': 'Military Flights',
     'Military Vessels': 'Military Vessels',
@@ -282,7 +295,12 @@ export const translations: Record<string, Translations> = {
     'Strategic Risk Overview': 'Strategic Risk Overview',
     'Intel Feed': 'Intel Feed',
     'World News': 'World News',
+    'World / Geopolitical': 'World / Geopolitical',
+    'Technology / AI': 'Technology / AI',
+    'Financial News': 'Financial News',
+    'Government / Policy': 'Government / Policy',
     'Middle East': 'Middle East',
+    'Middle East / MENA': 'Middle East / MENA',
     'Africa': 'Africa',
     'Latin America': 'Latin America',
     'Asia-Pacific': 'Asia-Pacific',
@@ -293,6 +311,7 @@ export const translations: Record<string, Translations> = {
     'Technology': 'Technology',
     'Sector Heatmap': 'Sector Heatmap',
     'AI/ML': 'AI/ML',
+    'AI / ML': 'AI / ML',
     'Layoffs Tracker': 'Layoffs Tracker',
     'My Monitors': 'My Monitors',
     'Market Radar': 'Market Radar',
@@ -303,14 +322,19 @@ export const translations: Record<string, Translations> = {
     'Tech Headlines': 'Tech Headlines',
     'Startups & VC': 'Startups & VC',
     'VC Insights': 'VC Insights',
+    'VC Insights & Essays': 'VC Insights & Essays',
     'Global Startup News': 'Global Startup News',
     'Unicorn Tracker': 'Unicorn Tracker',
     'Accelerators': 'Accelerators',
+    'Accelerators & Demo Days': 'Accelerators & Demo Days',
     'Cybersecurity': 'Cybersecurity',
     'AI Policy': 'AI Policy',
+    'AI Policy & Regulation': 'AI Policy & Regulation',
     'AI Regulation Dashboard': 'AI Regulation Dashboard',
     'Hardware': 'Hardware',
+    'Semiconductors & Hardware': 'Semiconductors & Hardware',
     'Cloud Infrastructure': 'Cloud Infrastructure',
+    'Cloud & Infrastructure': 'Cloud & Infrastructure',
     'Developer Community': 'Developer Community',
     'GitHub Trending': 'GitHub Trending',
     'IPO & SPAC': 'IPO & SPAC',
@@ -427,6 +451,7 @@ export const translations: Record<string, Translations> = {
     Markets: '市场',
     Crypto: '加密货币',
     Commodities: '大宗商品',
+    'Commodities / VIX': '大宗商品 / VIX',
     Predictions: '预测市场',
     'Military Flights': '军机追踪',
     'Military Vessels': '军舰追踪',
@@ -481,7 +506,12 @@ export const translations: Record<string, Translations> = {
     'Strategic Risk Overview': '战略风险概览',
     'Intel Feed': '情报源',
     'World News': '世界新闻',
+    'World / Geopolitical': '世界 / 地缘政治',
+    'Technology / AI': '科技 / AI',
+    'Financial News': '财经新闻',
+    'Government / Policy': '政府 / 政策',
     'Middle East': '中东',
+    'Middle East / MENA': '中东 / MENA',
     'Africa': '非洲',
     'Latin America': '拉美',
     'Asia-Pacific': '亚太',
@@ -492,6 +522,7 @@ export const translations: Record<string, Translations> = {
     'Technology': '科技',
     'Sector Heatmap': '板块热图',
     'AI/ML': 'AI/机器学习',
+    'AI / ML': 'AI / 机器学习',
     'Layoffs Tracker': '裁员追踪',
     'My Monitors': '我的监控',
     'Market Radar': '市场雷达',
@@ -502,14 +533,19 @@ export const translations: Record<string, Translations> = {
     'Tech Headlines': '科技头条',
     'Startups & VC': '创业与风投',
     'VC Insights': '风投洞察',
+    'VC Insights & Essays': '风投洞察与文章',
     'Global Startup News': '全球创业新闻',
     'Unicorn Tracker': '独角兽追踪',
     'Accelerators': '加速器',
+    'Accelerators & Demo Days': '加速器与演示日',
     'Cybersecurity': '网络安全',
     'AI Policy': 'AI 政策',
+    'AI Policy & Regulation': 'AI 政策与监管',
     'AI Regulation Dashboard': 'AI 监管仪表盘',
     'Hardware': '硬件',
+    'Semiconductors & Hardware': '半导体与硬件',
     'Cloud Infrastructure': '云基础设施',
+    'Cloud & Infrastructure': '云与基础设施',
     'Developer Community': '开发者社区',
     'GitHub Trending': 'GitHub 热门',
     'IPO & SPAC': 'IPO 与 SPAC',

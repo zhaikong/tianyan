@@ -21,13 +21,14 @@ type RuntimeProbe = {
 
 export function detectDesktopRuntime(probe: RuntimeProbe): boolean {
   const tauriInUserAgent = probe.userAgent.includes('Tauri');
-  const secureLocalhostOrigin = (
-    probe.locationProtocol === 'https:' && (
-      probe.locationHost === 'localhost' ||
-      probe.locationHost.startsWith('localhost:') ||
-      probe.locationHost === '127.0.0.1' ||
-      probe.locationHost.startsWith('127.0.0.1:')
-    )
+
+  // Only detect desktop runtime for actual Tauri apps, not for localhost development
+  // This prevents the app from trying to connect to local API server when running in browser
+  const isLocalhostDev = (
+    probe.locationHost === 'localhost' ||
+    probe.locationHost.startsWith('localhost:') ||
+    probe.locationHost === '127.0.0.1' ||
+    probe.locationHost.startsWith('127.0.0.1:')
   );
 
   // Tauri production windows can expose tauri-like hosts/schemes without
@@ -37,9 +38,13 @@ export function detectDesktopRuntime(probe: RuntimeProbe): boolean {
     probe.locationProtocol === 'asset:' ||
     probe.locationHost === 'tauri.localhost' ||
     probe.locationHost.endsWith('.tauri.localhost') ||
-    probe.locationOrigin.startsWith('tauri://') ||
-    secureLocalhostOrigin
+    probe.locationOrigin.startsWith('tauri://')
   );
+
+  // Only return true for actual Tauri runtime, not localhost development
+  if (isLocalhostDev) {
+    return false;
+  }
 
   return probe.hasTauriGlobals || tauriInUserAgent || tauriLikeLocation;
 }

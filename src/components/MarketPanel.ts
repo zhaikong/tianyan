@@ -2,6 +2,7 @@ import { Panel } from './Panel';
 import type { MarketData, CryptoData } from '@/types';
 import { formatPrice, formatChange, getChangeClass, getHeatmapClass } from '@/utils';
 import { escapeHtml } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 
 function miniSparkline(data: number[] | undefined, change: number | null, w = 50, h = 16): string {
   if (!data || data.length < 2) return '';
@@ -19,7 +20,7 @@ function miniSparkline(data: number[] | undefined, change: number | null, w = 50
 
 export class MarketPanel extends Panel {
   constructor() {
-    super({ id: 'markets', title: 'Markets' });
+    super({ id: 'markets', title: i18n.t('Markets') });
   }
 
   public renderMarkets(data: MarketData[]): void {
@@ -52,7 +53,7 @@ export class MarketPanel extends Panel {
 
 export class HeatmapPanel extends Panel {
   constructor() {
-    super({ id: 'heatmap', title: 'Sector Heatmap' });
+    super({ id: 'heatmap', title: i18n.t('Sector Heatmap') });
   }
 
   public renderHeatmap(data: Array<{ name: string; change: number | null }>): void {
@@ -83,7 +84,7 @@ export class HeatmapPanel extends Panel {
 
 export class CommoditiesPanel extends Panel {
   constructor() {
-    super({ id: 'commodities', title: 'Commodities / VIX' });
+    super({ id: 'commodities', title: i18n.t('Commodities / VIX') });
   }
 
   public renderCommodities(data: Array<{ display: string; price: number | null; change: number | null; sparkline?: number[] }>): void {
@@ -116,7 +117,7 @@ export class CommoditiesPanel extends Panel {
 
 export class CryptoPanel extends Panel {
   constructor() {
-    super({ id: 'crypto', title: 'Crypto' });
+    super({ id: 'crypto', title: i18n.t('Crypto') });
   }
 
   public renderCrypto(data: CryptoData[]): void {

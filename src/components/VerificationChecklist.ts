@@ -137,26 +137,26 @@ export class VerificationChecklist extends Component {
         .checklist-header h3 { margin: 0 0 4px; font-size: 14px; color: #fff; }
         .hint { margin: 0; font-size: 11px; color: #666; }
         .score-display { margin: 16px 0; padding: 16px; border-radius: 8px; border: 2px solid; text-align: center; }
-        .score-value { font-size: 32px; font-weight: 700; color: #fff; }
+        .score-value { font-size: 32px; font-weight: 700; color: #1e293b; }
         .score-label { font-size: 12px; font-weight: 600; text-transform: uppercase; }
         .checks-grid { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
-        .check-item { display: flex; align-items: center; gap: 8px; padding: 8px; background: #1a1a1a; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
-        .check-item:hover { background: #222; }
-        .check-item.checked { background: #1a3a1a; }
+        .check-item { display: flex; align-items: center; gap: 8px; padding: 8px; background: #f1f5f9; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+        .check-item:hover { background: #e2e8f0; }
+        .check-item.checked { background: #dcfce7; }
         .check-item input { width: 16px; height: 16px; }
         .icon { font-size: 14px; }
-        .label { font-size: 12px; color: #ddd; }
-        .notes-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid #222; }
-        .notes-section h4 { margin: 0 0 8px; font-size: 12px; color: #888; }
+        .label { font-size: 12px; color: #475569; }
+        .notes-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+        .notes-section h4 { margin: 0 0 8px; font-size: 12px; color: #64748b; }
         .notes-list { max-height: 100px; overflow-y: auto; }
-        .note-item { font-size: 11px; color: #aaa; padding: 4px 0; }
-        .empty { font-size: 11px; color: #444; font-style: italic; }
+        .note-item { font-size: 11px; color: #64748b; padding: 4px 0; }
+        .empty { font-size: 11px; color: #94a3b8; font-style: italic; }
         .add-note { display: flex; gap: 8px; margin-top: 8px; }
-        .add-note input { flex: 1; padding: 6px 8px; background: #1a1a1a; border: 1px solid #333; border-radius: 4px; color: #ddd; font-size: 12px; }
-        .add-note button { padding: 6px 12px; background: #333; border: none; border-radius: 4px; color: #fff; font-size: 12px; cursor: pointer; }
-        .checklist-actions { margin-top: 16px; padding-top: 16px; border-top: 1px solid #222; }
-        .reset-btn { width: 100%; padding: 8px; background: #2a2a2a; border: none; border-radius: 4px; color: #888; font-size: 12px; cursor: pointer; }
-        .reset-btn:hover { background: #333; color: #aaa; }
+        .add-note input { flex: 1; padding: 6px 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; color: #475569; font-size: 12px; }
+        .add-note button { padding: 6px 12px; background: #3b82f6; border: none; border-radius: 4px; color: #fff; font-size: 12px; cursor: pointer; }
+        .checklist-actions { margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+        .reset-btn { width: 100%; padding: 8px; background: #f1f5f9; border: none; border-radius: 4px; color: #64748b; font-size: 12px; cursor: pointer; }
+        .reset-btn:hover { background: #e2e8f0; color: #475569; }
       `),
     );
   }

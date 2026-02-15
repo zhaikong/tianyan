@@ -9,6 +9,7 @@ import {
   type IntelTopic,
   type TopicIntelligence,
 } from '@/services/gdelt-intel';
+import { i18n } from '@/i18n';
 
 export class GdeltIntelPanel extends Panel {
   private activeTopic: IntelTopic = INTEL_TOPICS[0]!;
@@ -18,7 +19,7 @@ export class GdeltIntelPanel extends Panel {
   constructor() {
     super({
       id: 'gdelt-intel',
-      title: 'Live Intelligence',
+      title: i18n.t('Live Intelligence'),
       showCount: true,
       trackActivity: true,
       infoTooltip: `<strong>GDELT Intelligence</strong>

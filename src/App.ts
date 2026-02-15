@@ -90,6 +90,7 @@ import { STARTUP_ECOSYSTEMS } from '@/config/startup-ecosystems';
 import { TECH_HQS, ACCELERATORS } from '@/config/tech-geo';
 import { isDesktopRuntime } from '@/services/runtime';
 import { getCountryAtCoordinates, hasCountryGeometry, isCoordinateInCountry, preloadCountryGeometry } from '@/services/country-geometry';
+import { i18n } from '@/i18n';
 
 import type { PredictionMarket, MarketData, ClusteredEvent } from '@/types';
 
@@ -271,6 +272,9 @@ export class App {
   }
 
   public async init(): Promise<void> {
+    // Initialize i18n
+    i18n.init();
+
     await initDB();
 
     // Initialize ML worker (desktop only - automatically disabled on mobile)
@@ -1664,17 +1668,17 @@ export class App {
     this.map.initEscalationGetters();
 
     // Create all panels
-    const politicsPanel = new NewsPanel('politics', 'World / Geopolitical');
+    const politicsPanel = new NewsPanel('politics', i18n.t('World / Geopolitical'));
     this.attachRelatedAssetHandlers(politicsPanel);
     this.newsPanels['politics'] = politicsPanel;
     this.panels['politics'] = politicsPanel;
 
-    const techPanel = new NewsPanel('tech', 'Technology / AI');
+    const techPanel = new NewsPanel('tech', i18n.t('Technology / AI'));
     this.attachRelatedAssetHandlers(techPanel);
     this.newsPanels['tech'] = techPanel;
     this.panels['tech'] = techPanel;
 
-    const financePanel = new NewsPanel('finance', 'Financial News');
+    const financePanel = new NewsPanel('finance', i18n.t('Financial News'));
     this.attachRelatedAssetHandlers(financePanel);
     this.newsPanels['finance'] = financePanel;
     this.panels['finance'] = financePanel;
@@ -1699,12 +1703,12 @@ export class App {
     const predictionPanel = new PredictionPanel();
     this.panels['polymarket'] = predictionPanel;
 
-    const govPanel = new NewsPanel('gov', 'Government / Policy');
+    const govPanel = new NewsPanel('gov', i18n.t('Government / Policy'));
     this.attachRelatedAssetHandlers(govPanel);
     this.newsPanels['gov'] = govPanel;
     this.panels['gov'] = govPanel;
 
-    const intelPanel = new NewsPanel('intel', 'Intel Feed');
+    const intelPanel = new NewsPanel('intel', i18n.t('Intel Feed'));
     this.attachRelatedAssetHandlers(intelPanel);
     this.newsPanels['intel'] = intelPanel;
     this.panels['intel'] = intelPanel;
@@ -1712,93 +1716,93 @@ export class App {
     const cryptoPanel = new CryptoPanel();
     this.panels['crypto'] = cryptoPanel;
 
-    const middleeastPanel = new NewsPanel('middleeast', 'Middle East / MENA');
+    const middleeastPanel = new NewsPanel('middleeast', i18n.t('Middle East / MENA'));
     this.attachRelatedAssetHandlers(middleeastPanel);
     this.newsPanels['middleeast'] = middleeastPanel;
     this.panels['middleeast'] = middleeastPanel;
 
-    const layoffsPanel = new NewsPanel('layoffs', 'Layoffs Tracker');
+    const layoffsPanel = new NewsPanel('layoffs', i18n.t('Layoffs Tracker'));
     this.attachRelatedAssetHandlers(layoffsPanel);
     this.newsPanels['layoffs'] = layoffsPanel;
     this.panels['layoffs'] = layoffsPanel;
 
-    const aiPanel = new NewsPanel('ai', 'AI / ML');
+    const aiPanel = new NewsPanel('ai', i18n.t('AI / ML'));
     this.attachRelatedAssetHandlers(aiPanel);
     this.newsPanels['ai'] = aiPanel;
     this.panels['ai'] = aiPanel;
 
     // Tech variant panels
-    const startupsPanel = new NewsPanel('startups', 'Startups & VC');
+    const startupsPanel = new NewsPanel('startups', i18n.t('Startups & VC'));
     this.attachRelatedAssetHandlers(startupsPanel);
     this.newsPanels['startups'] = startupsPanel;
     this.panels['startups'] = startupsPanel;
 
-    const vcblogsPanel = new NewsPanel('vcblogs', 'VC Insights & Essays');
+    const vcblogsPanel = new NewsPanel('vcblogs', i18n.t('VC Insights & Essays'));
     this.attachRelatedAssetHandlers(vcblogsPanel);
     this.newsPanels['vcblogs'] = vcblogsPanel;
     this.panels['vcblogs'] = vcblogsPanel;
 
-    const regionalStartupsPanel = new NewsPanel('regionalStartups', 'Global Startup News');
+    const regionalStartupsPanel = new NewsPanel('regionalStartups', i18n.t('Global Startup News'));
     this.attachRelatedAssetHandlers(regionalStartupsPanel);
     this.newsPanels['regionalStartups'] = regionalStartupsPanel;
     this.panels['regionalStartups'] = regionalStartupsPanel;
 
-    const unicornsPanel = new NewsPanel('unicorns', 'Unicorn Tracker');
+    const unicornsPanel = new NewsPanel('unicorns', i18n.t('Unicorn Tracker'));
     this.attachRelatedAssetHandlers(unicornsPanel);
     this.newsPanels['unicorns'] = unicornsPanel;
     this.panels['unicorns'] = unicornsPanel;
 
-    const acceleratorsPanel = new NewsPanel('accelerators', 'Accelerators & Demo Days');
+    const acceleratorsPanel = new NewsPanel('accelerators', i18n.t('Accelerators & Demo Days'));
     this.attachRelatedAssetHandlers(acceleratorsPanel);
     this.newsPanels['accelerators'] = acceleratorsPanel;
     this.panels['accelerators'] = acceleratorsPanel;
 
-    const fundingPanel = new NewsPanel('funding', 'Funding & VC');
+    const fundingPanel = new NewsPanel('funding', i18n.t('Funding & VC'));
     this.attachRelatedAssetHandlers(fundingPanel);
     this.newsPanels['funding'] = fundingPanel;
     this.panels['funding'] = fundingPanel;
 
-    const producthuntPanel = new NewsPanel('producthunt', 'Product Hunt');
+    const producthuntPanel = new NewsPanel('producthunt', i18n.t('Product Hunt'));
     this.attachRelatedAssetHandlers(producthuntPanel);
     this.newsPanels['producthunt'] = producthuntPanel;
     this.panels['producthunt'] = producthuntPanel;
 
-    const securityPanel = new NewsPanel('security', 'Cybersecurity');
+    const securityPanel = new NewsPanel('security', i18n.t('Cybersecurity'));
     this.attachRelatedAssetHandlers(securityPanel);
     this.newsPanels['security'] = securityPanel;
     this.panels['security'] = securityPanel;
 
-    const policyPanel = new NewsPanel('policy', 'AI Policy & Regulation');
+    const policyPanel = new NewsPanel('policy', i18n.t('AI Policy & Regulation'));
     this.attachRelatedAssetHandlers(policyPanel);
     this.newsPanels['policy'] = policyPanel;
     this.panels['policy'] = policyPanel;
 
-    const hardwarePanel = new NewsPanel('hardware', 'Semiconductors & Hardware');
+    const hardwarePanel = new NewsPanel('hardware', i18n.t('Semiconductors & Hardware'));
     this.attachRelatedAssetHandlers(hardwarePanel);
     this.newsPanels['hardware'] = hardwarePanel;
     this.panels['hardware'] = hardwarePanel;
 
-    const cloudPanel = new NewsPanel('cloud', 'Cloud & Infrastructure');
+    const cloudPanel = new NewsPanel('cloud', i18n.t('Cloud & Infrastructure'));
     this.attachRelatedAssetHandlers(cloudPanel);
     this.newsPanels['cloud'] = cloudPanel;
     this.panels['cloud'] = cloudPanel;
 
-    const devPanel = new NewsPanel('dev', 'Developer Community');
+    const devPanel = new NewsPanel('dev', i18n.t('Developer Community'));
     this.attachRelatedAssetHandlers(devPanel);
     this.newsPanels['dev'] = devPanel;
     this.panels['dev'] = devPanel;
 
-    const githubPanel = new NewsPanel('github', 'GitHub Trending');
+    const githubPanel = new NewsPanel('github', i18n.t('GitHub Trending'));
     this.attachRelatedAssetHandlers(githubPanel);
     this.newsPanels['github'] = githubPanel;
     this.panels['github'] = githubPanel;
 
-    const ipoPanel = new NewsPanel('ipo', 'IPO & SPAC');
+    const ipoPanel = new NewsPanel('ipo', i18n.t('IPO & SPAC'));
     this.attachRelatedAssetHandlers(ipoPanel);
     this.newsPanels['ipo'] = ipoPanel;
     this.panels['ipo'] = ipoPanel;
 
-    const thinktanksPanel = new NewsPanel('thinktanks', 'Think Tanks');
+    const thinktanksPanel = new NewsPanel('thinktanks', i18n.t('Think Tanks'));
     this.attachRelatedAssetHandlers(thinktanksPanel);
     this.newsPanels['thinktanks'] = thinktanksPanel;
     this.panels['thinktanks'] = thinktanksPanel;
@@ -1807,22 +1811,22 @@ export class App {
     this.panels['economic'] = economicPanel;
 
     // New Regional Panels
-    const africaPanel = new NewsPanel('africa', 'Africa');
+    const africaPanel = new NewsPanel('africa', i18n.t('Africa'));
     this.attachRelatedAssetHandlers(africaPanel);
     this.newsPanels['africa'] = africaPanel;
     this.panels['africa'] = africaPanel;
 
-    const latamPanel = new NewsPanel('latam', 'Latin America');
+    const latamPanel = new NewsPanel('latam', i18n.t('Latin America'));
     this.attachRelatedAssetHandlers(latamPanel);
     this.newsPanels['latam'] = latamPanel;
     this.panels['latam'] = latamPanel;
 
-    const asiaPanel = new NewsPanel('asia', 'Asia-Pacific');
+    const asiaPanel = new NewsPanel('asia', i18n.t('Asia-Pacific'));
     this.attachRelatedAssetHandlers(asiaPanel);
     this.newsPanels['asia'] = asiaPanel;
     this.panels['asia'] = asiaPanel;
 
-    const energyPanel = new NewsPanel('energy', 'Energy & Resources');
+    const energyPanel = new NewsPanel('energy', i18n.t('Energy & Resources'));
     this.attachRelatedAssetHandlers(energyPanel);
     this.newsPanels['energy'] = energyPanel;
     this.panels['energy'] = energyPanel;

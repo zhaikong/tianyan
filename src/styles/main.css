@@ -1,20 +1,20 @@
 /* ============================================
-   天眼 - 国潮商务风配色方案
+   天眼 - 明亮商务风配色方案
    中国红: #C8202D
    金色点缀: #D4AF37
-   深色背景: #0A0F1A
+   浅色背景: #F5F7FA
    ============================================ */
 
 :root {
   /* 主色系 - 国潮红金配色 */
   --bg-primary: #C8202D;
-  --surface-primary: #141414;
-  --surface-secondary: #1A1F26;
-  --surface-tertiary: #0A1621;
-  --border: #2A2A2A;
-  --text-primary: #FFFFFF;
-  --text-secondary: #E8E8E8;
-  --text-tertiary: #94A3B8;
+  --surface-primary: #FFFFFF;
+  --surface-secondary: #F8FAFC;
+  --surface-tertiary: #F1F5F9;
+  --border: #E2E8F0;
+  --text-primary: #1E293B;
+  --text-secondary: #475569;
+  --text-tertiary: #64748B;
 
   /* 扩展红色系 */
   --red-50: #FFF1F2;
@@ -37,37 +37,39 @@
   --gold-700: #9C7B29;
 
   /* 功能色 */
-  --accent-red: #FF6B6B;
+  --accent-red: #DC2626;
   --accent-gold: #D4AF37;
-  --accent-orange: #FF9F4C;
-  --success: #34A053;
-  --warning: #FFA934;
-  --error: #E74C3C;
-  --info-blue: #3498DB;
+  --accent-orange: #F59E0B;
+  --success: #16A34A;
+  --warning: #EAB308;
+  --error: #DC2626;
+  --info-blue: #2563EB;
 
-  /* 地图配色 */
-  --map-bg: #020a08;
-  --map-grid: #0a2a20;
-  --map-country: #0a2018;
-  --map-stroke: #0f5040;
+  /* 地图配色 - 亮色版本 */
+  --map-bg: #E8F4F8;
+  --map-grid: #CBD5E1;
+  --map-country: #F1F5F9;
+  --map-stroke: #94A3B8;
 
   /* 通用变量（兼容上游） */
-  --bg: #0a0a0a;
-  --surface: #141414;
-  --text: #e8e8e8;
-  --text-dim: #888;
-  --accent: #fff;
-  --red: #ff4444;
-  --green: #D4AF37;
-  --yellow: #ffaa00;
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --text: #1E293B;
+  --text-dim: #64748B;
+  --accent: #1E293B;
+  --red: #DC2626;
+  --green: #16A34A;
+  --yellow: #EAB308;
 
   /* 语义化别名 */
-  --overlay-bg: rgba(10, 10, 16, 0.9);
-  --card-bg: rgba(26, 26, 31, 0.95);
-  --panel-bg: rgba(20, 20, 30, 0.9);
-  --hover-bg: rgba(255, 255, 255, 0.06);
-  --map-water: rgba(30, 144, 255, 0.15);
-  --map-land: rgba(200, 200, 190, 0.8);
+  --overlay-bg: rgba(255, 255, 255, 0.95);
+  --card-bg: rgba(255, 255, 255, 0.98);
+  --panel-bg: rgba(255, 255, 255, 0.95);
+  --surface-hover: #F1F5F9;
+  --surface-elevated: #FFFFFF;
+  --hover-bg: rgba(0, 0, 0, 0.04);
+  --map-water: rgba(59, 130, 246, 0.15);
+  --map-land: rgba(100, 116, 139, 0.3);
 
   /* 字体系统 */
   --font-sans: 'PingFang SC', 'Microsoft YaHei', 'Inter', sans-serif;
@@ -889,7 +891,7 @@ body.animations-paused *::after {
   top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  background: #1a1a1a;
+  background: #f1f5f9;
   border: 1px solid #444;
   border-radius: 4px;
   padding: 10px 12px;
@@ -927,7 +929,7 @@ body.animations-paused *::after {
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid transparent;
-  border-bottom-color: #1a1a1a;
+  border-bottom-color: #e2e8f0;
 }
 
 .panel-info-tooltip strong {
@@ -1629,7 +1631,7 @@ body.animations-paused *::after {
 }
 
 .signal-modal {
-  background: #0a0a0a;
+  background: #f8fafc;
   border: 1px solid var(--accent);
   border-radius: 4px;
   width: 90%;
@@ -8675,7 +8677,7 @@ a.prediction-link:hover {
   top: 100%;
   right: 0;
   width: 380px;
-  background: #1a1a1a;
+  background: #f1f5f9;
   border: 1px solid var(--border);
   border-radius: 6px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
@@ -8896,7 +8898,7 @@ a.prediction-link:hover {
 }
 
 .findings-modal {
-  background: #1a1a1a;
+  background: #f1f5f9;
   border: 1px solid var(--border);
   border-radius: 8px;
   width: 90%;

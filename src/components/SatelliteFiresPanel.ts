@@ -83,15 +83,15 @@ export class SatelliteFiresPanel extends Panel {
       <style>
         .fires-panel-content { font-size: 12px; }
         .fires-table { width: 100%; border-collapse: collapse; }
-        .fires-table th { text-align: left; color: #666; font-weight: 600; font-size: 10px; text-transform: uppercase; padding: 4px 8px; border-bottom: 1px solid #222; }
-        .fires-table td { padding: 5px 8px; border-bottom: 1px solid #1a1a1a; color: #ccc; }
-        .fire-row:hover { background: #1a1a1a; }
-        .fire-row.fires-high .fire-region { color: #f97316; }
-        .fire-row.fires-high .fire-hi { color: #ef4444; font-weight: 600; }
+        .fires-table th { text-align: left; color: #64748b; font-weight: 600; font-size: 10px; text-transform: uppercase; padding: 4px 8px; border-bottom: 1px solid #e2e8f0; }
+        .fires-table td { padding: 5px 8px; border-bottom: 1px solid #e2e8f0; color: #475569; }
+        .fire-row:hover { background: #f1f5f9; }
+        .fire-row.fires-high .fire-region { color: #ea580c; }
+        .fire-row.fires-high .fire-hi { color: #dc2626; font-weight: 600; }
         .fire-count, .fire-hi, .fire-frp { text-align: right; font-variant-numeric: tabular-nums; }
-        .fire-totals { border-top: 1px solid #333; }
-        .fire-totals td { color: #fff; font-weight: 600; }
-        .fires-footer { display: flex; justify-content: space-between; padding: 8px 8px 0; color: #555; font-size: 10px; }
+        .fire-totals { border-top: 1px solid #e2e8f0; }
+        .fire-totals td { color: #1e293b; font-weight: 600; }
+        .fires-footer { display: flex; justify-content: space-between; padding: 8px 8px 0; color: #94a3b8; font-size: 10px; }
       </style>
     `);
   }
