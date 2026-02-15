@@ -1,5 +1,3 @@
-import { t } from '@/i18n';
-
 export interface PanelOptions {
   id: string;
   title: string;
@@ -7,7 +5,6 @@ export interface PanelOptions {
   className?: string;
   trackActivity?: boolean;
   infoTooltip?: string;
-  titleKey?: keyof import('@/i18n').Translations;
 }
 
 const PANEL_SPANS_KEY = 'worldmonitor-panel-spans';
@@ -76,15 +73,14 @@ export class Panel {
 
     const title = document.createElement('span');
     title.className = 'panel-title';
-    // Use translation key if provided, otherwise use the title string
-    title.textContent = options.titleKey ? t(options.titleKey) : options.title;
+    title.textContent = options.title;
     headerLeft.appendChild(title);
 
     if (options.infoTooltip) {
       const infoBtn = document.createElement('button');
       infoBtn.className = 'panel-info-btn';
       infoBtn.innerHTML = '?';
-      infoBtn.setAttribute('aria-label', t('show methodology info'));
+      infoBtn.setAttribute('aria-label', 'Show methodology info');
 
       const tooltip = document.createElement('div');
       tooltip.className = 'panel-info-tooltip';
@@ -137,7 +133,7 @@ export class Panel {
     // Add resize handle
     this.resizeHandle = document.createElement('div');
     this.resizeHandle.className = 'panel-resize-handle';
-    this.resizeHandle.title = t('drag to resize');
+    this.resizeHandle.title = 'Drag to resize (double-click to reset)';
     this.resizeHandle.draggable = false; // Prevent parent's drag from capturing
     this.element.appendChild(this.resizeHandle);
     this.setupResizeHandlers();
@@ -266,11 +262,7 @@ export class Panel {
 
   protected setDataBadge(state: 'live' | 'cached' | 'unavailable', detail?: string): void {
     if (!this.statusBadgeEl) return;
-    const labels: Record<string, string> = {
-      live: t('live'),
-      cached: t('cached'),
-      unavailable: t('unavailable')
-    };
+    const labels = { live: 'LIVE', cached: 'CACHED', unavailable: 'UNAVAILABLE' } as const;
     this.statusBadgeEl.textContent = detail ? `${labels[state]} · ${detail}` : labels[state];
     this.statusBadgeEl.className = `panel-data-badge ${state}`;
     this.statusBadgeEl.style.display = 'inline-flex';
@@ -284,22 +276,20 @@ export class Panel {
     return this.element;
   }
 
-  public showLoading(message?: string): void {
-    const loadingMsg = message || t('loading');
+  public showLoading(message = 'Loading'): void {
     this.content.innerHTML = `
       <div class="panel-loading">
         <div class="panel-loading-radar">
           <div class="panel-radar-sweep"></div>
           <div class="panel-radar-dot"></div>
         </div>
-        <div class="panel-loading-text">${loadingMsg}</div>
+        <div class="panel-loading-text">${message}</div>
       </div>
     `;
   }
 
-  public showError(message?: string): void {
-    const errorMsg = message || t('failed to load');
-    this.content.innerHTML = `<div class="error-message">${errorMsg}</div>`;
+  public showError(message = 'Failed to load data'): void {
+    this.content.innerHTML = `<div class="error-message">${message}</div>`;
   }
 
   public setCount(count: number): void {

@@ -15,7 +15,3 @@ CLAUDE.md
 .windsurf/
 skills/
 test-results/
-# Windows reserved device names
-nul
-NUL
-

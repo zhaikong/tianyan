@@ -1,6 +1,6 @@
 /**
  * Country Intelligence Brief Endpoint
- * Generates AI-powered country situation briefs using MiniMax or Groq
+ * Generates AI-powered country situation briefs using Groq
  * Redis cached (2h TTL) for cross-user deduplication
  */
 
@@ -10,13 +10,10 @@ export const config = {
   runtime: 'edge',
 };
 
-// Support both MiniMax and Groq
-const MINIMAX_API_URL = 'https://api.minimax.io/anthropic/v1/messages';
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const MINIMAX_MODEL = 'abab6.5s-chat'; // MiniMax M2.5 model
-const GROQ_MODEL = 'llama-3.1-8b-instant'; // Groq fallback
+const MODEL = 'llama-3.1-8b-instant';
 const CACHE_TTL_SECONDS = 7200; // 2 hours
-const CACHE_VERSION = 'ci-v3'; // Increment to invalidate old caches
+const CACHE_VERSION = 'ci-v2';
 
 export default async function handler(request) {
   if (request.method !== 'POST') {
@@ -26,36 +23,26 @@ export default async function handler(request) {
     });
   }
 
-  // Check for MiniMax API key first, fall back to Groq
-  const minimaxKey = process.env.MINIMAX_API_KEY;
-  const groqKey = process.env.GROQ_API_KEY;
-
-  if (!minimaxKey && !groqKey) {
-    return new Response(JSON.stringify({ brief: null, fallback: true, skipped: true, reason: 'No AI API key configured (MINIMAX_API_KEY or GROQ_API_KEY)' }), {
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) {
+    return new Response(JSON.stringify({ intel: null, fallback: true, skipped: true, reason: 'GROQ_API_KEY not configured' }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
-  // Prefer MiniMax if available
-  const useMiniMax = !!minimaxKey;
-  const apiKey = useMiniMax ? minimaxKey : groqKey;
-  const apiUrl = useMiniMax ? MINIMAX_API_URL : GROQ_API_URL;
-  const model = useMiniMax ? MINIMAX_MODEL : GROQ_MODEL;
-  const provider = useMiniMax ? 'minimax' : 'groq';
-
   try {
     const { country, code, context } = await request.json();
 
     if (!country || !code) {
-      return new Response(JSON.stringify({ error: 'Country and code required' }), {
+      return new Response(JSON.stringify({ error: 'country and code required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
     // Cache key includes country code + context hash (context changes as data updates)
-    const contextHash = context ? hashString(JSON.stringify(context)) : 'no-ctx';
+    const contextHash = context ? hashString(JSON.stringify(context)).slice(0, 8) : 'no-ctx';
     const cacheKey = `${CACHE_VERSION}:${code}:${contextHash}`;
 
     const cached = await getCachedJson(cacheKey);
@@ -71,7 +58,7 @@ export default async function handler(request) {
     const dataLines = [];
     if (context?.score != null) {
       const changeStr = context.change24h ? ` (${context.change24h > 0 ? '+' : ''}${context.change24h} in 24h)` : '';
-      dataLines.push(`Instability Index: ${context.score}/100 (${context.level || 'unknown'}) — trend: ${context.trend || 'unknown'}${changeStr}`);
+      dataLines.push(`Instability Score: ${context.score}/100 (${context.level || 'unknown'}) — trend: ${context.trend || 'unknown'}${changeStr}`);
     }
     if (context?.components) {
       const c = context.components;
@@ -82,7 +69,7 @@ export default async function handler(request) {
     if (context?.militaryVessels != null) dataLines.push(`Military vessels detected in/near country: ${context.militaryVessels}`);
     if (context?.outages != null) dataLines.push(`Internet outages: ${context.outages}`);
     if (context?.earthquakes != null) dataLines.push(`Recent earthquakes: ${context.earthquakes}`);
-    if (context?.stockIndex) dataLines.push(`Stock Index: ${context.stockIndex}`);
+    if (context?.stockIndex) dataLines.push(`Stock Market Index: ${context.stockIndex}`);
     if (context?.convergenceScore != null) {
       dataLines.push(`Signal convergence score: ${context.convergenceScore}/100 (multiple signal types detected: ${(context.signalTypes || []).join(', ')})`);
     }
@@ -96,74 +83,71 @@ export default async function handler(request) {
     }
 
     const dataSection = dataLines.length > 0
-      ? `\n\nCURRENT SENSOR DATA:\n${dataLines.join('\n')}`
+      ? `\nCURRENT SENSOR DATA:\n${dataLines.join('\n')}`
       : '\nNo real-time sensor data available for this country.';
 
     const dateStr = new Date().toISOString().split('T')[0];
 
-    const systemPrompt = `You are a senior intelligence analyst providing comprehensive country situation briefs. Current date: ${dateStr}.
+    const systemPrompt = `You are a senior intelligence analyst providing comprehensive country situation briefs. Current date: ${dateStr}. Donald Trump is the current US President (second term, inaugurated Jan 2025).
 
 Write a thorough, data-driven intelligence brief for the requested country. Structure:
 
-1. **Current Situation** — What is happening right now. Reference specific data: instability scores, protest counts, military presence, outages. Explain what numbers mean in context.
-2. **Military & Security Posture** — Analyze military activity in/near country. What forces are present? What does positioning suggest? What are foreign nations doing in this theater?
-3. **Key Risk Factors** — What drives instability or stability. Connect dots between different signals (protests + outages = potential crackdown? military buildup + diplomatic tensions = escalation risk?). Reference specific headlines.
-4. **Regional Context** — How does this country's situation affect or relate to its neighbors and broader region? Reference any convergence alerts.
-5. **Outlook & Watch Items** — What to monitor in near term. Be specific about indicators that would signal escalation or de-escalation.
+1. **Current Situation** — What is happening right now. Reference specific data: instability scores, protest counts, military presence, outages. Explain what the numbers mean in context.
+
+2. **Military & Security Posture** — Analyze military activity in/near the country. What forces are present? What does the positioning suggest? What are foreign nations doing in this theater?
+
+3. **Key Risk Factors** — What drives instability or stability. Connect the dots between different signals (protests + outages = potential crackdown? military buildup + diplomatic tensions = escalation risk?). Reference specific headlines.
+
+4. **Regional Context** — How does this country's situation affect or relate to its neighbors and the broader region? Reference any convergence alerts.
+
+5. **Outlook & Watch Items** — What to monitor in the near term. Be specific about indicators that would signal escalation or de-escalation.
 
 Rules:
-- Be specific and analytical. Reference data provided (scores, counts, headlines).
+- Be specific and analytical. Reference the data provided (scores, counts, headlines, convergence).
 - If data shows low activity, say so — don't manufacture threats.
 - Connect signals: explain what combinations of data points suggest.
 - 5-6 paragraphs, 300-400 words.
-- No speculation beyond what data supports.
-- Use plain language, no jargon.
-- If military assets are 0, don't speculate about military presence — say monitoring shows no current activity.`;
+- No speculation beyond what the data supports.
+- Use plain language, not jargon.
+- If military assets are 0, don't speculate about military presence — say monitoring shows no current military activity.
+- When referencing a specific headline from the numbered list, cite it as [N] where N is the headline number (e.g. "tensions escalated [3]"). Only cite headlines you directly reference.`;
 
     const userPrompt = `Country: ${country} (${code})${dataSection}`;
 
-    const response = await fetch(apiUrl, {
+    const groqRes = await fetch(GROQ_API_URL, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model,
+        model: MODEL,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt },
         ],
         temperature: 0.4,
-        max_tokens: useMiniMax ? 1500 : 900,
-        stream: false,
+        max_tokens: 900,
       }),
     });
 
-    if (!response.ok) {
-      const errText = await response.text();
-      console.error(`[CountryIntel] ${provider.toUpperCase()} API error:`, response.status, errText);
-      return new Response(JSON.stringify({ error: 'AI service unavailable', fallback: true }), {
+    if (!groqRes.ok) {
+      const errText = await groqRes.text();
+      console.error('[CountryIntel] Groq error:', groqRes.status, errText);
+      return new Response(JSON.stringify({ error: 'AI service error', fallback: true }), {
         status: 502,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    const data = await response.json();
-    const brief = data.choices?.[0]?.message?.content?.[0]?.text?.trim();
-
-    if (!brief) {
-      return new Response(JSON.stringify({ error: 'Empty response', fallback: true }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
+    const groqData = await groqRes.json();
+    const brief = groqData.choices?.[0]?.message?.content || '';
 
     const result = {
       brief,
       country,
       code,
-      model,
+      model: MODEL,
       generatedAt: new Date().toISOString(),
     };
 

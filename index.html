@@ -1,84 +1,95 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://http://localhost:5713 http://127.0.0.1:46123 ws: wss: blob: data:; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.youtube.com https://static.cloudflareinsights.com; worker-src 'self' blob:; font-src 'self' data: https:; media-src 'self' data: blob: https:; frame-src 'self' http://127.0.0.1:46123 https://www.youtube.com https://www.youtube-nocookie.com;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https: http://localhost:5173 http://127.0.0.1:46123 ws: wss: blob: data:; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.youtube.com https://static.cloudflareinsights.com; worker-src 'self' blob:; font-src 'self' data: https:; media-src 'self' data: blob: https:; frame-src 'self' http://127.0.0.1:46123 https://worldmonitor.app https://tech.worldmonitor.app https://www.youtube.com https://www.youtube-nocookie.com;" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
     <!-- Primary Meta Tags -->
-    <title>天眼 - 全球态势感知与情报分析平台</title>
-    <meta name="title" content="天眼 - 全球态势感知与情报分析平台" />
-    <meta name="description" content="AI驱动的实时全球情报监测平台，整合实时新闻、市场数据、军事追踪、基础设施监测和地缘政治数据。一目了然的态势感知界面。" />
-    <meta name="keywords" content="AI情报, 地缘政治, 全球监测, 态势感知, 军事追踪, 基础设施, 网络安全, 经济数据, 风险预警" />
-    <meta name="author" content="天眼团队 &lt;contact@tianyan.app&gt;" />
-    <meta name="theme-color" content="#c41e3a" />
+    <title>World Monitor - Global Situation with AI Insights</title>
+    <meta name="title" content="World Monitor - Global Situation with AI Insights" />
+    <meta name="description" content="AI-powered real-time global intelligence dashboard with live news, markets, military tracking, infrastructure monitoring, and geopolitical data. OSINT in one view." />
+    <meta name="keywords" content="AI intelligence, AI-powered dashboard, global intelligence, geopolitical dashboard, world news, market data, military bases, nuclear facilities, undersea cables, conflict zones, real-time monitoring, situation awareness, OSINT, flight tracking, AIS ships, earthquake monitor, protest tracker, power outages, oil prices, government spending, polymarket predictions" />
+    <meta name="author" content="Elie Habib" />
+    <meta name="theme-color" content="#0a0f0a" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://worldmonitor.app/" />
+
+    <!-- Additional Search Discovery -->
+    <meta name="application-name" content="World Monitor" />
+    <meta name="subject" content="AI-Powered Global Intelligence and Situation Awareness" />
+    <meta name="classification" content="AI Intelligence Dashboard, OSINT Tool, News Aggregator" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tianyan.app/" />
-    <meta property="og:title" content="天眼 - 全球态势感知与情报分析平台" />
-    <meta property="og:description" content="AI驱动的实时全球情报监测平台，整合实时新闻、市场数据、军事追踪、基础设施监测和地缘政治数据。一目了然的态势感知界面。" />
-    <meta property="og:image" content="https://tianyan.app/favicon/og-image.png" />
+    <meta property="og:url" content="https://worldmonitor.app/" />
+    <meta property="og:title" content="World Monitor - Global Situation with AI Insights" />
+    <meta property="og:description" content="AI-powered real-time global intelligence dashboard with live news, markets, military tracking, infrastructure monitoring, and geopolitical data." />
+    <meta property="og:image" content="https://worldmonitor.app/favico/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="天眼" />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content="World Monitor" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://tianyan.app/" />
-    <meta name="twitter:title" content="天眼 - 全球态势感知与情报分析平台" />
-    <meta name="twitter:description" content="AI驱动的实时全球情报监测平台，整合实时新闻、市场数据、军事追踪、基础设施监测和地缘政治数据。一目了然的态势感知界面。" />
-    <meta name="twitter:image" content="https://tianyan.app/favicon/og-image.png" />
-    <meta name="twitter:site" content="@tianyanapp" />
-    <meta name="twitter:creator" content="@tianyanteam" />
+    <meta name="twitter:url" content="https://worldmonitor.app/" />
+    <meta name="twitter:title" content="World Monitor - Global Situation with AI Insights" />
+    <meta name="twitter:description" content="AI-powered real-time global intelligence dashboard with live news, markets, military tracking, infrastructure monitoring, and geopolitical data." />
+    <meta name="twitter:image" content="https://worldmonitor.app/favico/og-image.png" />
+    <meta name="twitter:site" content="@worldmonitorapp" />
+    <meta name="twitter:creator" content="@eliehabib" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "天眼",
-        "alternateName": "TianYan",
-        "url": "https://tianyan.app/",
-        "description": "AI驱动的实时全球情报监测平台，整合实时新闻、市场数据、军事追踪、基础设施监测和地缘政治数据。一目了然的态势感知界面。",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Web Browser",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "CNY"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "天眼团队"
-        },
-        "featureList": [
-          "AI驱动的情报综合分析",
-          "实时新闻聚合",
-          "股票市场追踪",
-          "军机航班监测",
-          "海军舰船追踪",
-          "地震预警",
-          "抗议活动追踪",
-          "电力中断监测",
-          "石油价格分析",
-          "政府支出数据",
-          "预测市场",
-          "基础设施监测",
-          "地缘政治情报"
-        ],
-        "screenshot": "https://tianyan.app/favicon/og-image.png",
-        "keywords": "AI, 情报, 地缘政治, 实时监测, 态势感知"
-      }
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "World Monitor",
+      "alternateName": "WorldMonitor",
+      "url": "https://worldmonitor.app/",
+      "description": "AI-powered real-time global intelligence dashboard with live news, markets, military tracking, infrastructure monitoring, and geopolitical data.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Elie Habib"
+      },
+      "featureList": [
+        "AI-powered intelligence synthesis",
+        "Real-time news aggregation",
+        "Stock market tracking",
+        "Military flight monitoring",
+        "Ship AIS tracking",
+        "Earthquake alerts",
+        "Protest tracking",
+        "Power outage monitoring",
+        "Oil price analytics",
+        "Government spending data",
+        "Prediction markets",
+        "Infrastructure monitoring",
+        "Geopolitical intelligence"
+      ],
+      "screenshot": "https://worldmonitor.app/favico/og-image.png",
+      "keywords": "AI, OSINT, intelligence dashboard, geopolitical, real-time monitoring, situation awareness, AI-powered"
+    }
     </script>
 
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="/favico/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favico/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favico/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favico/apple-touch-icon.png" />
+
 
     <!-- Styles -->
     <link rel="stylesheet" href="/src/styles/main.css" />

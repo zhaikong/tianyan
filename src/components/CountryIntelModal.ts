@@ -4,7 +4,6 @@
 import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
 import type { CountryScore } from '@/services/country-instability';
 import type { PredictionMarket } from '@/types';
-import { t } from '@/i18n';
 
 interface CountryIntelData {
   brief: string;
@@ -134,7 +133,7 @@ export class CountryIntelModal {
       <span class="country-flag">${flag}</span>
       <span class="country-name">${escapeHtml(country)}</span>
       ${score ? this.levelBadge(score.level) : ''}
-      <button class="country-intel-share-btn" title="${t('Share story')}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+      <button class="country-intel-share-btn" title="Share story"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
     `;
     this.headerEl.querySelector('.country-intel-share-btn')?.addEventListener('click', () => {
       if (this.onShareStory && this.currentCode && this.currentName) {
@@ -148,12 +147,12 @@ export class CountryIntelModal {
     if (score) {
       html += `
         <div class="cii-section">
-          <div class="cii-label">${t('Instability Index')} ${this.scoreBar(score.score)}</div>
+          <div class="cii-label">Instability Index ${this.scoreBar(score.score)}</div>
           <div class="cii-components">
-            <span title="${t('Unrest')}">📢 ${score.components.unrest.toFixed(0)}</span>
-            <span title="${t('Conflict')}">⚔ ${score.components.conflict.toFixed(0)}</span>
-            <span title="${t('Security')}">🛡️ ${score.components.security.toFixed(0)}</span>
-            <span title="${t('Information')}">📡 ${score.components.information.toFixed(0)}</span>
+            <span title="Unrest">📢 ${score.components.unrest.toFixed(0)}</span>
+            <span title="Conflict">⚔ ${score.components.conflict.toFixed(0)}</span>
+            <span title="Security">🛡️ ${score.components.security.toFixed(0)}</span>
+            <span title="Information">📡 ${score.components.information.toFixed(0)}</span>
             <span class="cii-trend ${score.trend}">${score.trend === 'rising' ? '↗' : score.trend === 'falling' ? '↘' : '→'} ${score.trend}</span>
           </div>
         </div>

@@ -1,38 +1,30 @@
-/**
- * Runtime Configuration for Desktop App
- * Handles feature toggles and API secrets
- */
-
 import { isDesktopRuntime } from './runtime';
 import { invokeTauri } from './tauri-bridge';
 
 export type RuntimeSecretKey =
   | 'GROQ_API_KEY'
   | 'OPENROUTER_API_KEY'
-  | 'MINIMAX_API_KEY'
   | 'FRED_API_KEY'
   | 'EIA_API_KEY'
   | 'CLOUDFLARE_API_TOKEN'
   | 'ACLED_ACCESS_TOKEN'
   | 'WINGBITS_API_KEY'
-  | 'AIS_API_KEY'
-  | 'OPENSKY_RELAY_URL'
+  | 'WS_RELAY_URL'
+  | 'VITE_OPENSKY_RELAY_URL'
   | 'OPENSKY_CLIENT_ID'
-  | 'OPENSKY_CLIENT_SECRET';
+  | 'OPENSKY_CLIENT_SECRET'
+  | 'AISSTREAM_API_KEY';
 
 export type RuntimeFeatureId =
   | 'aiGroq'
   | 'aiOpenRouter'
-  | 'aiMiniMax'
   | 'economicFred'
   | 'energyEia'
   | 'internetOutages'
   | 'acledConflicts'
   | 'wingbitsEnrichment'
   | 'aisRelay'
-  | 'openskyRelay'
-  | 'openskyClientId'
-  | 'openskyClientSecret';
+  | 'openskyRelay';
 
 export interface RuntimeFeatureDefinition {
   id: RuntimeFeatureId;
@@ -44,7 +36,7 @@ export interface RuntimeFeatureDefinition {
 
 export interface RuntimeSecretState {
   value: string;
-  source: 'env' | 'vault' | 'missing';
+  source: 'env' | 'vault';
 }
 
 export interface RuntimeConfig {
@@ -54,10 +46,9 @@ export interface RuntimeConfig {
 
 const TOGGLES_STORAGE_KEY = 'worldmonitor-runtime-feature-toggles';
 
-const DEFAULT_FEATURE_TOGGLES: Record<RuntimeFeatureId, boolean> = {
+const defaultToggles: Record<RuntimeFeatureId, boolean> = {
   aiGroq: true,
   aiOpenRouter: true,
-  aiMiniMax: true,
   economicFred: true,
   energyEia: true,
   internetOutages: true,
@@ -65,196 +56,153 @@ const DEFAULT_FEATURE_TOGGLES: Record<RuntimeFeatureId, boolean> = {
   wingbitsEnrichment: true,
   aisRelay: true,
   openskyRelay: true,
-  openskyClientId: false,
-  openskyClientSecret: false,
-};
-
-const SIGNUP_URLS: Partial<Record<RuntimeSecretKey, string>> = {
-  GROQ_API_KEY: 'https://console.groq.com/keys',
-  OPENROUTER_API_KEY: 'https://openrouter.ai/settings/keys',
-  MINIMAX_API_KEY: 'https://api.minimax.io/anthropic',
-  FRED_API_KEY: 'https://fred.stlouisfed.org/docs/api/api_key.html',
-  EIA_API_KEY: 'https://www.eia.gov/opendata/register.php',
-  CLOUDFLARE_API_TOKEN: 'https://dash.cloudflare.com/profile/api-tokens',
-  ACLED_ACCESS_TOKEN: 'https://developer.acleddata.com/',
-  WINGBITS_API_KEY: 'https://wingbits.com/register',
-  AIS_API_KEY: 'https://stream.ais-stream.io/authenticate',
-  OPENSKY_RELAY_URL: 'https://opensky-network.org/api/recovery/tokens',
-  OPENSKY_CLIENT_ID: 'https://opensky-network.org/login?view=registration',
-  OPENSKY_CLIENT_SECRET: 'https://opensky-network.org/login?view=registration',
 };
 
 export const RUNTIME_FEATURES: RuntimeFeatureDefinition[] = [
   {
     id: 'aiGroq',
     name: 'Groq summarization',
-    description: 'Primary fast LLM provider used for AI summary generation',
+    description: 'Primary fast LLM provider used for AI summary generation.',
     requiredSecrets: ['GROQ_API_KEY'],
-    fallback: 'Falls back to OpenRouter, then local browser model',
+    fallback: 'Falls back to OpenRouter, then local browser model.',
   },
   {
     id: 'aiOpenRouter',
     name: 'OpenRouter summarization',
-    description: 'Secondary LLM provider for AI summary generation',
+    description: 'Secondary LLM provider for AI summary fallback.',
     requiredSecrets: ['OPENROUTER_API_KEY'],
-    fallback: 'Falls back to local browser model',
-  },
-  {
-    id: 'aiMiniMax',
-    name: 'MiniMax M2.5 summarization',
-    description: 'MiniMax M2.5 model via Anthropic-compatible API for AI summary generation',
-    requiredSecrets: ['MINIMAX_API_KEY'],
-    fallback: 'Falls back to Groq',
+    fallback: 'Falls back to local browser model only.',
   },
   {
     id: 'economicFred',
-    name: 'FRED Economic indicators',
-    description: 'Macroeconomic indicators from Federal Reserve Economic Data',
+    name: 'FRED economic indicators',
+    description: 'Macro indicators from Federal Reserve Economic Data.',
     requiredSecrets: ['FRED_API_KEY'],
-    fallback: 'Economic panel remains available with non-FRED metrics',
+    fallback: 'Economic panel remains available with non-FRED metrics.',
   },
   {
     id: 'energyEia',
     name: 'EIA oil analytics',
-    description: 'US Energy Information Administration oil metrics',
+    description: 'US Energy Information Administration oil metrics.',
     requiredSecrets: ['EIA_API_KEY'],
-    fallback: 'Oil analytics cards show disabled state',
+    fallback: 'Oil analytics cards show disabled state.',
   },
   {
     id: 'internetOutages',
     name: 'Cloudflare outage radar',
-    description: 'Internet outage detection from Cloudflare Radar annotations API',
+    description: 'Internet outages from Cloudflare Radar annotations API.',
     requiredSecrets: ['CLOUDFLARE_API_TOKEN'],
-    fallback: 'Outage layer is disabled and map continues with other feeds',
+    fallback: 'Outage layer is disabled and map continues with other feeds.',
   },
   {
     id: 'acledConflicts',
     name: 'ACLED conflicts & protests',
-    description: 'Armed Conflict Location & Event Data',
+    description: 'Conflict and protest event feeds from ACLED.',
     requiredSecrets: ['ACLED_ACCESS_TOKEN'],
-    fallback: 'Conflicts/protests overlays show disabled state',
+    fallback: 'Conflict/protest overlays are hidden.',
   },
   {
     id: 'wingbitsEnrichment',
-    name: 'Wingbits military aircraft enrichment',
-    description: 'Military flight operator/aircraft metadata from Wingbits relay',
+    name: 'Wingbits aircraft enrichment',
+    description: 'Military flight operator/aircraft enrichment metadata.',
     requiredSecrets: ['WINGBITS_API_KEY'],
-    fallback: 'Flight map renders with heuristic-only classification',
+    fallback: 'Flight map still renders with heuristic-only classification.',
   },
   {
     id: 'aisRelay',
     name: 'AIS vessel relay',
-    description: 'Live vessel tracking from AIS stream via relay endpoint',
-    requiredSecrets: ['AIS_API_KEY', 'WS_RELAY_URL'],
-    fallback: 'AIS layer is disabled',
+    description: 'Live vessel ingestion via relay endpoint and AIS key.',
+    requiredSecrets: ['WS_RELAY_URL', 'AISSTREAM_API_KEY'],
+    fallback: 'AIS layer is disabled.',
   },
   {
     id: 'openskyRelay',
-    name: 'OpenSky military flights',
-    description: 'OpenSky Network military flight API',
-    requiredSecrets: ['OPENSKY_RELAY_URL'],
-    fallback: 'Flight map renders with ADS-B exchange data only',
-  },
-  {
-    id: 'openskyClientId',
-    name: 'OpenSky OAuth client ID',
-    description: 'OpenSky Network OAuth client credentials',
-    requiredSecrets: ['OPENSKY_CLIENT_ID'],
-    fallback: 'Cannot authenticate with OpenSky API',
-  },
-  {
-    id: 'openskyClientSecret',
-    name: 'OpenSky OAuth client secret',
-    description: 'OpenSky Network OAuth client credentials',
-    requiredSecrets: ['OPENSKY_CLIENT_SECRET'],
-    fallback: 'Cannot authenticate with OpenSky API',
+    name: 'OpenSky military flights relay',
+    description: 'Relay credentials for OpenSky OAuth client credentials flow.',
+    requiredSecrets: ['VITE_OPENSKY_RELAY_URL', 'OPENSKY_CLIENT_ID', 'OPENSKY_CLIENT_SECRET'],
+    fallback: 'Military flights fall back to limited/no data.',
   },
 ];
+
+function readEnvSecret(key: RuntimeSecretKey): string {
+  const envValue = (import.meta as { env?: Record<string, unknown> }).env?.[key];
+  return typeof envValue === 'string' ? envValue.trim() : '';
+}
+
+function readStoredToggles(): Record<RuntimeFeatureId, boolean> {
+  try {
+    const stored = localStorage.getItem(TOGGLES_STORAGE_KEY);
+    if (!stored) return { ...defaultToggles };
+    const parsed = JSON.parse(stored) as Partial<Record<RuntimeFeatureId, boolean>>;
+    return { ...defaultToggles, ...parsed };
+  } catch {
+    return { ...defaultToggles };
+  }
+}
+
+function validateSecretValue(value: string): boolean {
+  return value.trim().length >= 8;
+}
+
+const listeners = new Set<() => void>();
 
 const runtimeConfig: RuntimeConfig = {
   featureToggles: readStoredToggles(),
   secrets: {},
 };
 
-const listeners = new Set<() => void>();
+function notifyConfigChanged(): void {
+  for (const listener of listeners) listener();
+}
 
-function readStoredToggles(): Record<RuntimeFeatureId, boolean> {
-  try {
-    const stored = localStorage.getItem(TOGGLES_STORAGE_KEY);
-    if (!stored) return { ...DEFAULT_FEATURE_TOGGLES };
-    const parsed = JSON.parse(stored) as Partial<Record<RuntimeFeatureId, boolean>>;
-    return { ...DEFAULT_FEATURE_TOGGLES, ...parsed };
-  } catch {
-    return { ...DEFAULT_FEATURE_TOGGLES };
+function seedSecretsFromEnvironment(): void {
+  if (isDesktopRuntime()) return;
+
+  const keys = new Set<RuntimeSecretKey>(RUNTIME_FEATURES.flatMap(feature => feature.requiredSecrets));
+  for (const key of keys) {
+    const value = readEnvSecret(key);
+    if (value) {
+      runtimeConfig.secrets[key] = { value, source: 'env' };
+    }
   }
 }
 
-export function subscribeRuntimeConfig(listener: (config: RuntimeConfig) => void): () => void {
-  listener(runtimeConfig);
+seedSecretsFromEnvironment();
+
+export function subscribeRuntimeConfig(listener: () => void): () => void {
+  listeners.add(listener);
   return () => listeners.delete(listener);
 }
 
-function notifyConfigChanged(): void {
-  for (const listener of listeners) listener(runtimeConfig);
-}
-
-export function readEnvSecret(key: RuntimeSecretKey): string {
-  const envKey: Record<RuntimeSecretKey, string> = {
-    GROQ_API_KEY: 'GROQ_API_KEY',
-    OPENROUTER_API_KEY: 'OPENROUTER_API_KEY',
-    MINIMAX_API_KEY: 'MINIMAX_API_KEY',
-    FRED_API_KEY: 'FRED_API_KEY',
-    EIA_API_KEY: 'EIA_API_KEY',
-    CLOUDFLARE_API_TOKEN: 'CLOUDFLARE_API_TOKEN',
-    ACLED_ACCESS_TOKEN: 'ACLED_ACCESS_TOKEN',
-    WINGBITS_API_KEY: 'WINGBITS_API_KEY',
-    AIS_API_KEY: 'AIS_API_KEY',
-    OPENSKY_RELAY_URL: 'WS_RELAY_URL',
-    OPENSKY_CLIENT_ID: 'VITE_OPENSKY_CLIENT_ID',
-    OPENSKY_CLIENT_SECRET: 'VITE_OPENSKY_CLIENT_SECRET',
+export function getRuntimeConfigSnapshot(): RuntimeConfig {
+  return {
+    featureToggles: { ...runtimeConfig.featureToggles },
+    secrets: { ...runtimeConfig.secrets },
   };
-  const envValue = (import.meta as { env?: Record<string, unknown> }).env?.[envKey[key]];
-  return typeof envValue === 'string' ? envValue.trim() : '';
-}
-
-export function validateSecretValue(value: string): boolean {
-  return value.trim().length >= 8;
-}
-
-export function getSecretState(key: RuntimeSecretKey): { present: boolean; valid: boolean; source: RuntimeSecretState['source']; value: string } {
-  const state = runtimeConfig.secrets[key];
-  const value = readEnvSecret(key);
-
-  if (value && validateSecretValue(value)) {
-    return { present: true, valid: true, source: 'env', value };
-  }
-
-  if (state?.value && validateSecretValue(state.value)) {
-    return { present: true, valid: true, source: 'vault', value: state.value };
-  }
-
-  return { present: false, valid: false, source: 'missing', value: '' };
 }
 
 export function isFeatureEnabled(featureId: RuntimeFeatureId): boolean {
-  if (!isDesktopRuntime()) return true;
   return runtimeConfig.featureToggles[featureId] !== false;
 }
 
-export function getRuntimeConfigSnapshot(): RuntimeConfig {
-  return { ...runtimeConfig };
+export function getSecretState(key: RuntimeSecretKey): { present: boolean; valid: boolean; source: 'env' | 'vault' | 'missing' } {
+  const state = runtimeConfig.secrets[key];
+  if (!state) return { present: false, valid: false, source: 'missing' };
+  return { present: true, valid: validateSecretValue(state.value), source: state.source };
 }
 
 export function isFeatureAvailable(featureId: RuntimeFeatureId): boolean {
   if (!isFeatureEnabled(featureId)) return false;
 
-  const feature = RUNTIME_FEATURES.find(f => f.id === featureId);
-  if (!feature) return false;
+  // Cloud/web deployments validate credentials server-side.
+  // Desktop runtime validates local secrets client-side for capability gating.
+  if (!isDesktopRuntime()) {
+    return true;
+  }
 
-  return feature.requiredSecrets.every(secretKey => {
-    const state = getSecretState(secretKey);
-    return state.present && state.valid;
-  });
+  const feature = RUNTIME_FEATURES.find(item => item.id === featureId);
+  if (!feature) return false;
+  return feature.requiredSecrets.every(secretKey => getSecretState(secretKey).valid);
 }
 
 export function setFeatureToggle(featureId: RuntimeFeatureId, enabled: boolean): void {
@@ -264,31 +212,32 @@ export function setFeatureToggle(featureId: RuntimeFeatureId, enabled: boolean):
 }
 
 export async function setSecretValue(key: RuntimeSecretKey, value: string): Promise<void> {
-  runtimeConfig.secrets[key] = { value, source: 'env' };
-  notifyConfigChanged();
-
   if (!isDesktopRuntime()) {
     console.warn('[runtime-config] Ignoring secret write outside desktop runtime');
     return;
   }
 
-  await invokeTauri<void>('set_secret', { key, value });
-}
-
-export async function deleteSecret(key: RuntimeSecretKey): Promise<void> {
-  delete runtimeConfig.secrets[key];
-  notifyConfigChanged();
-
-  if (!isDesktopRuntime()) {
-    console.warn('[runtime-config] Ignoring secret delete outside desktop runtime');
-    return;
+  const sanitized = value.trim();
+  if (sanitized) {
+    await invokeTauri<void>('set_secret', { key, value: sanitized });
+    runtimeConfig.secrets[key] = { value: sanitized, source: 'vault' };
+  } else {
+    await invokeTauri<void>('delete_secret', { key });
+    delete runtimeConfig.secrets[key];
   }
 
-  await invokeTauri<void>('delete_secret', { key });
+  // Push to sidecar so handlers pick it up immediately
+  pushSecretToSidecar(key, sanitized || '');
+
+  notifyConfigChanged();
 }
 
-export function isDesktopRuntime(): boolean {
-  return (import.meta as { env?: Record<string, unknown> }).env?.VITE_DESKTOP_RUNTIME === '1';
+function pushSecretToSidecar(key: string, value: string): void {
+  fetch('http://127.0.0.1:46123/api/local-env-update', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ key, value: value || null }),
+  }).catch(() => { /* sidecar not running */ });
 }
 
 export async function loadDesktopSecrets(): Promise<void> {
@@ -297,49 +246,16 @@ export async function loadDesktopSecrets(): Promise<void> {
   try {
     const keys = await invokeTauri<RuntimeSecretKey[]>('list_supported_secret_keys');
 
-    if (keys && Array.isArray(keys)) {
-      for (const key of keys) {
-        if (SIGNUP_URLS[key]) {
-          const value = await invokeTauri<string>('get_secret', { key });
-          if (value && validateSecretValue(value)) {
-            runtimeConfig.secrets[key] = { value, source: 'vault' };
-          }
-        }
+    await Promise.all(keys.map(async (key) => {
+      const value = await invokeTauri<string | null>('get_secret', { key });
+      if (value && value.trim()) {
+        runtimeConfig.secrets[key] = { value: value.trim(), source: 'vault' };
+        pushSecretToSidecar(key, value.trim());
       }
-    }
+    }));
 
     notifyConfigChanged();
   } catch (error) {
     console.warn('[runtime-config] Failed to load desktop secrets from vault', error);
   }
 }
-
-export function getApiBaseUrl(): string {
-  if (!isDesktopRuntime()) {
-    return '';
-  }
-  const configuredBaseUrl = import.meta.env.VITE_TAURI_API_BASE_URL;
-  if (configuredBaseUrl) {
-    return normalizeBaseUrl(configuredBaseUrl);
-  }
-  const variant = import.meta.env.VITE_VARIANT || 'full';
-  return DEFAULT_REMOTE_HOSTS[variant] ?? 'https://tianyan.app';
-}
-
-export function getRemoteApiBaseUrl(): string {
-  const configuredRemoteBase = import.meta.env.VITE_TAURI_REMOTE_API_BASE_URL;
-  if (configuredRemoteBase) {
-    return normalizeBaseUrl(configuredRemoteBase);
-  }
-  const variant = import.meta.env.VITE_VARIANT || 'full';
-  return DEFAULT_REMOTE_HOSTS[variant] ?? 'https://tianyan.app';
-}
-
-function normalizeBaseUrl(baseUrl: string): string {
-  return baseUrl.replace(/\/$/, '');
-}
-
-const DEFAULT_REMOTE_HOSTS: Record<string, string> = {
-  full: 'https://tianyan.app',
-  tech: 'https://tech.tianyan.app',
-};
