@@ -114,14 +114,30 @@ class I18n {
    */
   private loadSavedLanguage(): void {
     try {
-      const saved = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+      // Try new storage key first
+      let saved = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+
+      // If not found, try old key for migration
+      if (!saved) {
+        const oldKey = 'worldmonitor-language';
+        saved = localStorage.getItem(oldKey);
+        if (saved) {
+          // Migrate to new key
+          localStorage.setItem(LANGUAGE_STORAGE_KEY, saved);
+          localStorage.removeItem(oldKey);
+        }
+      }
+
       if (saved && supportedLanguages.includes(saved as Language)) {
         this.currentLanguage = saved as Language;
       } else {
-        // Detect browser language
-        const browserLang = navigator.language.split('-')[0];
-        if (browserLang === 'zh' && supportedLanguages.includes('zh')) {
-          this.currentLanguage = 'zh';
+        // Detect browser language (支持中文环境)
+        const browserLang = navigator.language.toLowerCase();
+        const langCode = browserLang.split('-')[0];
+
+        // 支持所有中文变体 (zh, zh-CN, zh-TW, zh-HK等)
+        if (langCode === 'zh' && supportedLanguages.includes('zh' as Language)) {
+          this.currentLanguage = 'zh' as Language;
         }
       }
     } catch {

@@ -471,5 +471,5 @@ export const translations: Record<string, Translations> = {
 export type Language = keyof typeof translations;
 export const supportedLanguages: Language[] = ['en', 'zh'];
 
-export const LANGUAGE_STORAGE_KEY = 'worldmonitor-language';
-export const DEFAULT_LANGUAGE: Language = 'en';
+export const LANGUAGE_STORAGE_KEY = 'tianyan-language';
+export const DEFAULT_LANGUAGE: Language = 'zh';
