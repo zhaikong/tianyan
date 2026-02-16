@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 import { calculateCII, type CountryScore } from '@/services/country-instability';
 
 export class CIIPanel extends Panel {
@@ -121,7 +122,7 @@ export class CIIPanel extends Panel {
       this.setCount(withData.length);
 
       if (withData.length === 0) {
-        this.content.innerHTML = '<div class="empty-state">No instability signals detected</div>';
+        this.content.innerHTML = `<div class="empty-state">${i18n.t('No instability signals detected')}</div>`;
         return;
       }
 
@@ -130,7 +131,7 @@ export class CIIPanel extends Panel {
       this.bindShareButtons();
     } catch (error) {
       console.error('[CIIPanel] Refresh error:', error);
-      this.showError('Failed to calculate CII');
+      this.showError(i18n.t('Failed to calculate CII'));
     }
   }
 

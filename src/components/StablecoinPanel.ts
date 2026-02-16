@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 
 interface StablecoinData {
   id: string;
@@ -93,7 +94,7 @@ export class StablecoinPanel extends Panel {
 
     const d = this.data;
     if (!d.stablecoins.length) {
-      this.setContent('<div class="panel-loading-text">Stablecoin data temporarily unavailable</div>');
+      this.setContent(`<div class="panel-loading-text">${i18n.t('Stablecoin data unavailable')}</div>`);
       return;
     }
 

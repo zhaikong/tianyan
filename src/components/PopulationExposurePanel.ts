@@ -2,6 +2,7 @@ import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
 import type { PopulationExposure } from '@/types';
 import { formatPopulation } from '@/services/population-exposure';
+import { i18n } from '@/i18n';
 
 export class PopulationExposurePanel extends Panel {
   private exposures: PopulationExposure[] = [];
@@ -33,7 +34,7 @@ export class PopulationExposurePanel extends Panel {
 
   private renderContent(): void {
     if (this.exposures.length === 0) {
-      this.setContent('<div class="panel-empty">No exposure data available</div>');
+      this.setContent(`<div class="panel-empty">${i18n.t('No exposure data available')}</div>`);
       return;
     }
 

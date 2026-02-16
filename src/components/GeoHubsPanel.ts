@@ -1,6 +1,7 @@
 import { Panel } from './Panel';
 import type { GeoHubActivity } from '@/services/geo-activity';
 import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 
 const COUNTRY_FLAGS: Record<string, string> = {
   'USA': '🇺🇸', 'Russia': '🇷🇺', 'China': '🇨🇳', 'UK': '🇬🇧', 'Belgium': '🇧🇪',
@@ -76,7 +77,7 @@ export class GeoHubsPanel extends Panel {
 
   private render(): void {
     if (this.activities.length === 0) {
-      this.showError('No active geopolitical hubs');
+      this.showError(i18n.t('No active geopolitical hubs'));
       return;
     }
 

@@ -1,6 +1,7 @@
 import { Panel } from './Panel';
 import { getTechReadinessRankings, type TechReadinessScore } from '@/services/worldbank';
 import { escapeHtml } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 
 const COUNTRY_FLAGS: Record<string, string> = {
   'USA': '🇺🇸', 'CHN': '🇨🇳', 'JPN': '🇯🇵', 'DEU': '🇩🇪', 'KOR': '🇰🇷',
@@ -58,7 +59,7 @@ export class TechReadinessPanel extends Panel {
       this.render();
     } catch (error) {
       console.error('[TechReadinessPanel] Error fetching data:', error);
-      this.showError('Failed to load tech readiness data');
+      this.showError(i18n.t('Failed to load tech readiness data'));
     } finally {
       this.loading = false;
     }
@@ -116,7 +117,7 @@ export class TechReadinessPanel extends Panel {
 
   private render(): void {
     if (this.rankings.length === 0) {
-      this.showError('No data available');
+      this.showError(i18n.t('No data available'));
       return;
     }
 

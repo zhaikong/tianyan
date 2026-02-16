@@ -1,6 +1,7 @@
 import { Panel } from './Panel';
 import type { TechHubActivity } from '@/services/tech-activity';
 import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 
 const COUNTRY_FLAGS: Record<string, string> = {
   'USA': '🇺🇸', 'United States': '🇺🇸',
@@ -94,7 +95,7 @@ export class TechHubsPanel extends Panel {
 
   private render(): void {
     if (this.activities.length === 0) {
-      this.showError('No active tech hubs');
+      this.showError(i18n.t('No active tech hubs'));
       return;
     }
 

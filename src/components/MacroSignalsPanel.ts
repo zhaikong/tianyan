@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 
 interface MacroSignalData {
   timestamp: string;
@@ -101,7 +102,7 @@ export class MacroSignalsPanel extends Panel {
     }
 
     if (this.error || !this.data) {
-      this.showError(this.error || 'No data');
+      this.showError(this.error || i18n.t('No data available'));
       return;
     }
 

@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 import {
   buildDependencyGraph,
   calculateCascade,
@@ -46,7 +47,7 @@ export class CascadePanel extends Panel {
       this.render();
     } catch (error) {
       console.error('[CascadePanel] Init error:', error);
-      this.showError('Failed to build dependency graph');
+      this.showError(i18n.t('Failed to build dependency graph'));
     }
   }
 

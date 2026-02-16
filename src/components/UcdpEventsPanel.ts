@@ -1,6 +1,7 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
 import type { UcdpGeoEvent, UcdpEventType } from '@/types';
+import { i18n } from '@/i18n';
 
 export class UcdpEventsPanel extends Panel {
   private events: UcdpGeoEvent[] = [];
@@ -68,7 +69,7 @@ export class UcdpEventsPanel extends Panel {
 
     const displayed = filtered.slice(0, 50);
     const eventsHtml = displayed.length === 0
-      ? '<div class="panel-empty">No events in this category</div>'
+      ? `<div class="panel-empty">${i18n.t('No events in this category')}</div>`
       : displayed.map(e => {
         const deathsBadge = e.deaths_best > 0
           ? `<span class="ucdp-deaths" style="color:${this.getTypeColor(e.type_of_violence)}">${e.deaths_best} <small>(${e.deaths_low}-${e.deaths_high})</small></span>`
@@ -90,7 +91,7 @@ export class UcdpEventsPanel extends Panel {
       }).join('');
 
     const moreHtml = filtered.length > 50
-      ? `<div class="panel-more">${filtered.length - 50} more events not shown</div>`
+      ? `<div class="panel-more">${filtered.length - 50} ${i18n.t('more events not shown')}</div>`
       : '';
 
     this.setContent(`

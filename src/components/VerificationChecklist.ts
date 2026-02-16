@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { i18n } from '@/i18n';
 
 export interface VerificationCheck {
   id: string;
@@ -29,6 +30,12 @@ export class VerificationChecklist extends Component {
   private checks: VerificationCheck[] = VERIFICATION_TEMPLATE.map(c => ({ ...c }));
   private notes: string[] = [];
   private manualNote: string = '';
+
+  private getCheckLabel(id: string): string {
+    const template = VERIFICATION_TEMPLATE.find(c => c.id === id);
+    const labelKey = template?.label || id;
+    return i18n.t(labelKey as any);
+  }
 
   private toggleCheck(id: string): void {
     this.checks = this.checks.map(c =>
@@ -76,16 +83,16 @@ export class VerificationChecklist extends Component {
     };
 
     const verdictLabels: Record<string, string> = {
-      verified: 'VERIFIED',
-      likely: 'LIKELY AUTHENTIC',
-      uncertain: 'UNCERTAIN',
-      unreliable: 'UNRELIABLE',
+      verified: i18n.t('VERIFIED'),
+      likely: i18n.t('LIKELY AUTHENTIC'),
+      uncertain: i18n.t('UNCERTAIN'),
+      unreliable: i18n.t('UNRELIABLE'),
     };
 
     return h('div', { class: 'verification-checklist' },
       h('div', { class: 'checklist-header' },
-        h('h3', null, 'Information Verification Checklist'),
-        h('p', { class: 'hint' }, 'Based on Bellingcat\'s OSH Framework'),
+        h('h3', null, i18n.t('Information Verification Checklist')),
+        h('p', { class: 'hint' }, i18n.t('Based on Bellingcat\'s OSH Framework')),
       ),
       h('div', {
         class: 'score-display',
@@ -105,15 +112,15 @@ export class VerificationChecklist extends Component {
               onChange: () => this.toggleCheck(check.id),
             }),
             h('span', { class: 'icon' }, check.icon),
-            h('span', { class: 'label' }, check.label),
+            h('span', { class: 'label' }, this.getCheckLabel(check.id)),
           )
         ),
       ),
       h('div', { class: 'notes-section' },
-        h('h4', null, 'Verification Notes'),
+        h('h4', null, i18n.t('Verification Notes')),
         h('div', { class: 'notes-list' },
           this.notes.length === 0
-            ? h('p', { class: 'empty' }, 'No notes added')
+            ? h('p', { class: 'empty' }, i18n.t('No notes added'))
             : this.notes.map((note, i) =>
                 h('div', { key: i, class: 'note-item' }, `• ${note}`)
               ),
@@ -123,19 +130,19 @@ export class VerificationChecklist extends Component {
             type: 'text',
             value: this.manualNote,
             onInput: (e: Event) => { this.manualNote = (e.target as HTMLInputElement).value; },
-            placeholder: 'Add verification note...',
+            placeholder: i18n.t('Add verification note'),
             onKeyPress: (e: KeyboardEvent) => { if (e.key === 'Enter') this.addNote(); },
           }),
-          h('button', { onClick: () => this.addNote() }, 'Add'),
+          h('button', { onClick: () => this.addNote() }, i18n.t('Add')),
         ),
       ),
       h('div', { class: 'checklist-actions' },
-        h('button', { class: 'reset-btn', onClick: () => this.reset() }, 'Reset Checklist'),
+        h('button', { class: 'reset-btn', onClick: () => this.reset() }, i18n.t('Reset Checklist')),
       ),
       h('style', null, `
-        .verification-checklist { background: #0d0d0d; border-radius: 8px; padding: 16px; max-width: 400px; }
-        .checklist-header h3 { margin: 0 0 4px; font-size: 14px; color: #fff; }
-        .hint { margin: 0; font-size: 11px; color: #666; }
+        .verification-checklist { background: #f8fafc; border-radius: 8px; padding: 16px; max-width: 400px; border: 1px solid #e2e8f0; }
+        .checklist-header h3 { margin: 0 0 4px; font-size: 14px; color: #1e293b; }
+        .hint { margin: 0; font-size: 11px; color: #64748b; }
         .score-display { margin: 16px 0; padding: 16px; border-radius: 8px; border: 2px solid; text-align: center; }
         .score-value { font-size: 32px; font-weight: 700; color: #1e293b; }
         .score-label { font-size: 12px; font-weight: 600; text-transform: uppercase; }
@@ -152,7 +159,7 @@ export class VerificationChecklist extends Component {
         .note-item { font-size: 11px; color: #64748b; padding: 4px 0; }
         .empty { font-size: 11px; color: #94a3b8; font-style: italic; }
         .add-note { display: flex; gap: 8px; margin-top: 8px; }
-        .add-note input { flex: 1; padding: 6px 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; color: #475569; font-size: 12px; }
+        .add-note input { flex: 1; padding: 6px 8px; background: #fff; border: 1px solid #e2e8f0; border-radius: 4px; color: #475569; font-size: 12px; }
         .add-note button { padding: 6px 12px; background: #3b82f6; border: none; border-radius: 4px; color: #fff; font-size: 12px; cursor: pointer; }
         .checklist-actions { margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
         .reset-btn { width: 100%; padding: 8px; background: #f1f5f9; border: none; border-radius: 4px; color: #64748b; font-size: 12px; cursor: pointer; }

@@ -25,7 +25,7 @@ export class MarketPanel extends Panel {
 
   public renderMarkets(data: MarketData[]): void {
     if (data.length === 0) {
-      this.showError('Failed to load market data');
+      this.showError(i18n.t('Failed to load market data'));
       return;
     }
 
@@ -60,7 +60,7 @@ export class HeatmapPanel extends Panel {
     const validData = data.filter((d) => d.change !== null);
 
     if (validData.length === 0) {
-      this.showError('Failed to load sector data');
+      this.showError(i18n.t('Failed to load sector data'));
       return;
     }
 
@@ -91,7 +91,7 @@ export class CommoditiesPanel extends Panel {
     const validData = data.filter((d) => d.price !== null);
 
     if (validData.length === 0) {
-      this.showError('Failed to load commodities');
+      this.showError(i18n.t('Failed to load commodities'));
       return;
     }
 
@@ -122,7 +122,7 @@ export class CryptoPanel extends Panel {
 
   public renderCrypto(data: CryptoData[]): void {
     if (data.length === 0) {
-      this.showError('Failed to load crypto data');
+      this.showError(i18n.t('Failed to load crypto data'));
       return;
     }
 

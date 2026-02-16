@@ -11,6 +11,7 @@ import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
 import { SITE_VARIANT } from '@/config';
 import { getPersistentCache, setPersistentCache } from '@/services/persistent-cache';
 import type { ClusteredEvent, FocalPoint, MilitaryFlight } from '@/types';
+import { i18n } from '@/i18n';
 
 export class InsightsPanel extends Panel {
   private isHidden = false;
@@ -253,7 +254,7 @@ export class InsightsPanel extends Panel {
 
     if (clusters.length === 0) {
       this.setDataBadge('unavailable');
-      this.setContent('<div class="insights-empty">Waiting for news data...</div>');
+      this.setContent(`<div class="insights-empty">${i18n.t('Waiting for news data')}</div>`);
       return;
     }
 
@@ -322,7 +323,7 @@ export class InsightsPanel extends Panel {
       }
 
       if (importantClusters.length === 0) {
-        this.setContent('<div class="insights-empty">No breaking or multi-source stories yet</div>');
+        this.setContent(`<div class="insights-empty">${i18n.t('No breaking stories yet')}</div>`);
         return;
       }
 
@@ -378,7 +379,7 @@ export class InsightsPanel extends Panel {
       this.renderInsights(importantClusters, sentiments, worldBrief);
     } catch (error) {
       console.error('[InsightsPanel] Error:', error);
-      this.setContent('<div class="insights-error">Analysis failed - retrying...</div>');
+      this.setContent(`<div class="insights-error">${i18n.t('Analysis failed')}</div>`);
     }
   }
 

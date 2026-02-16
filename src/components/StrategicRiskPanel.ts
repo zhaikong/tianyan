@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 import {
   calculateStrategicRiskOverview,
   getRecentAlerts,
@@ -63,7 +64,7 @@ export class StrategicRiskPanel extends Panel {
       this.startAutoRefresh();
     } catch (error) {
       console.error('[StrategicRiskPanel] Init error:', error);
-      this.showError('Failed to calculate risk overview');
+      this.showError(i18n.t('Failed to calculate risk overview'));
     }
   }
 

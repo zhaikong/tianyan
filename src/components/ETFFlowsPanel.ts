@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { i18n } from '@/i18n';
 
 interface ETFData {
   ticker: string;
@@ -92,7 +93,7 @@ export class ETFFlowsPanel extends Panel {
 
     const d = this.data;
     if (!d.etfs.length) {
-      this.setContent('<div class="panel-loading-text">ETF data temporarily unavailable</div>');
+      this.setContent(`<div class="panel-loading-text">${i18n.t('ETF data temporarily unavailable')}</div>`);
       return;
     }
 

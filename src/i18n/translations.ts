@@ -170,6 +170,8 @@ export interface Translations {
 
   // Panel messages
   'No data available': string;
+  'No news available': string;
+  'No instability signals detected': string;
   'Data still loading': string;
   'Items': string;
   'Sources': string;
@@ -210,6 +212,72 @@ export interface Translations {
   'For best experience': string;
   'Some features may be limited': string;
   'Continue to app': string;
+
+  // Panel error messages (新增)
+  'Failed to calculate CII': string;
+  'Failed to build dependency graph': string;
+  'No active geopolitical hubs': string;
+  'Failed to cluster news': string;
+  'Failed to load sector data': string;
+  'Failed to load commodities': string;
+  'Failed to load intelligence feed': string;
+  'Failed to load predictions': string;
+  'Failed to calculate risk overview': string;
+  'Failed to load tech readiness data': string;
+  'No active tech hubs': string;
+  'No significant anomalies detected': string;
+  'ETF data temporarily unavailable': string;
+  'No events in this category': string;
+  'more events not shown': string;
+  'Waiting for news data': string;
+  'No breaking stories yet': string;
+  'Analysis failed': string;
+  'Generating summary': string;
+  'Could not generate summary': string;
+  'Summary failed': string;
+  'No exposure data available': string;
+  'Stablecoin data unavailable': string;
+  'No fire data available': string;
+  'Failed to load market data': string;
+  'Failed to load crypto data': string;
+
+  // Satellite fires panel
+  'Region': string;
+  'Fires': string;
+  'High': string;
+  'FRP': string;
+  'Total': string;
+
+  // Insights panel
+  'BREAKING & CONFIRMED': string;
+  'WORLD BRIEF': string;
+  'TECH BRIEF': string;
+  'ML DETECTED': string;
+  'GEOGRAPHIC CONVERGENCE': string;
+  'FOCAL POINTS': string;
+  'Progress': string;
+  'Articles': string;
+
+  // Verification checklist
+  'Information Verification Checklist': string;
+  'Based on Bellingcat\'s OSH Framework': string;
+  'Verification Notes': string;
+  'No notes added': string;
+  'Add verification note': string;
+  'Add': string;
+  'Reset Checklist': string;
+  'VERIFIED': string;
+  'LIKELY AUTHENTIC': string;
+  'UNCERTAIN': string;
+  'UNRELIABLE': string;
+  'Recent timestamp confirmed': string;
+  'Location verified': string;
+  'Primary source identified': string;
+  'Cross-referenced with other sources': string;
+  'No AI generation artifacts': string;
+  'Not recycled/old footage': string;
+  'Metadata verified': string;
+  'Context established': string;
 }
 
 export const translations: Record<string, Translations> = {
@@ -382,6 +450,8 @@ export const translations: Record<string, Translations> = {
 
     // Panel messages
     'No data available': 'No data available',
+    'No news available': 'No news available',
+    'No instability signals detected': 'No instability signals detected',
     'Data still loading': 'Data still loading',
     Items: 'items',
     Sources: 'sources',
@@ -422,6 +492,72 @@ export const translations: Record<string, Translations> = {
     'For best experience': 'For best experience, use a desktop browser.',
     'Some features may be limited': 'Some features may be limited on mobile.',
     'Continue to app': 'Continue to app',
+
+    // Panel error messages
+    'Failed to calculate CII': 'Failed to calculate CII',
+    'Failed to build dependency graph': 'Failed to build dependency graph',
+    'No active geopolitical hubs': 'No active geopolitical hubs',
+    'Failed to cluster news': 'Failed to cluster news',
+    'Failed to load sector data': 'Failed to load sector data',
+    'Failed to load commodities': 'Failed to load commodities',
+    'Failed to load intelligence feed': 'Failed to load intelligence feed',
+    'Failed to load predictions': 'Failed to load predictions',
+    'Failed to calculate risk overview': 'Failed to calculate risk overview',
+    'Failed to load tech readiness data': 'Failed to load tech readiness data',
+    'No active tech hubs': 'No active tech hubs',
+    'No significant anomalies detected': 'No significant anomalies detected',
+    'ETF data temporarily unavailable': 'ETF data temporarily unavailable',
+    'No events in this category': 'No events in this category',
+    'more events not shown': 'more events not shown',
+    'Waiting for news data': 'Waiting for news data...',
+    'No breaking stories yet': 'No breaking stories yet',
+    'Analysis failed': 'Analysis failed - retrying...',
+    'Generating summary': 'Generating summary...',
+    'Could not generate summary': 'Could not generate summary',
+    'Summary failed': 'Summary failed',
+    'No exposure data available': 'No exposure data available',
+    'Stablecoin data unavailable': 'Stablecoin data unavailable',
+    'No fire data available': 'No fire data available',
+    'Failed to load market data': 'Failed to load market data',
+    'Failed to load crypto data': 'Failed to load crypto data',
+
+    // Satellite fires panel
+    'Region': 'Region',
+    'Fires': 'Fires',
+    'High': 'High',
+    'FRP': 'FRP',
+    'Total': 'Total',
+
+    // Insights panel
+    'BREAKING & CONFIRMED': 'BREAKING & CONFIRMED',
+    'WORLD BRIEF': 'WORLD BRIEF',
+    'TECH BRIEF': 'TECH BRIEF',
+    'ML DETECTED': 'ML DETECTED',
+    'GEOGRAPHIC CONVERGENCE': 'GEOGRAPHIC CONVERGENCE',
+    'FOCAL POINTS': 'FOCAL POINTS',
+    'Progress': 'Progress',
+    'Articles': 'Articles',
+
+    // Verification checklist
+    'Information Verification Checklist': 'Information Verification Checklist',
+    'Based on Bellingcat\'s OSH Framework': 'Based on Bellingcat\'s OSH Framework',
+    'Verification Notes': 'Verification Notes',
+    'No notes added': 'No notes added',
+    'Add verification note': 'Add verification note...',
+    'Add': 'Add',
+    'Reset Checklist': 'Reset Checklist',
+    'VERIFIED': 'VERIFIED',
+    'LIKELY AUTHENTIC': 'LIKELY AUTHENTIC',
+    'UNCERTAIN': 'UNCERTAIN',
+    'UNRELIABLE': 'UNRELIABLE',
+    'Recent timestamp confirmed': 'Recent timestamp confirmed',
+    'Location verified': 'Location verified',
+    'Primary source identified': 'Primary source identified',
+    'Cross-referenced with other sources': 'Cross-referenced with other sources',
+    'No AI generation artifacts': 'No AI generation artifacts',
+    'Not recycled/old footage': 'Not recycled/old footage',
+    'Metadata verified': 'Metadata verified',
+    'Context established': 'Context established',
   },
 
   zh: {
@@ -593,6 +729,8 @@ export const translations: Record<string, Translations> = {
 
     // Panel messages
     'No data available': '无可用数据',
+    'No news available': '暂无新闻',
+    'No instability signals detected': '未检测到不稳定信号',
     'Data still loading': '数据正在加载',
     Items: '条',
     Sources: '个来源',
@@ -633,6 +771,72 @@ export const translations: Record<string, Translations> = {
     'For best experience': '为获得最佳体验，请使用桌面浏览器。',
     'Some features may be limited': '移动设备上某些功能可能受限。',
     'Continue to app': '继续访问应用',
+
+    // Panel error messages
+    'Failed to calculate CII': '计算CII失败',
+    'Failed to build dependency graph': '构建依赖图失败',
+    'No active geopolitical hubs': '无活跃地缘政治中心',
+    'Failed to cluster news': '新闻聚类失败',
+    'Failed to load sector data': '加载板块数据失败',
+    'Failed to load commodities': '加载大宗商品数据失败',
+    'Failed to load intelligence feed': '加载情报源失败',
+    'Failed to load predictions': '加载预测数据失败',
+    'Failed to calculate risk overview': '计算风险概览失败',
+    'Failed to load tech readiness data': '加载科技就绪度数据失败',
+    'No active tech hubs': '无活跃科技中心',
+    'No significant anomalies detected': '未检测到显著异常',
+    'ETF data temporarily unavailable': 'ETF数据暂时不可用',
+    'No events in this category': '该类别无事件',
+    'more events not shown': '更多事件未显示',
+    'Waiting for news data': '等待新闻数据...',
+    'No breaking stories yet': '暂无突发新闻',
+    'Analysis failed': '分析失败，正在重试...',
+    'Generating summary': '正在生成摘要...',
+    'Could not generate summary': '无法生成摘要',
+    'Summary failed': '摘要生成失败',
+    'No exposure data available': '无可用影响数据',
+    'Stablecoin data unavailable': '稳定币数据不可用',
+    'No fire data available': '无火灾数据',
+    'Failed to load market data': '加载市场数据失败',
+    'Failed to load crypto data': '加载加密货币数据失败',
+
+    // Satellite fires panel
+    'Region': '地区',
+    'Fires': '火灾',
+    'High': '高强度',
+    'FRP': 'FRP',
+    'Total': '总计',
+
+    // Insights panel
+    'BREAKING & CONFIRMED': '突发 & 已确认',
+    'WORLD BRIEF': '世界简报',
+    'TECH BRIEF': '科技简报',
+    'ML DETECTED': 'ML 检测',
+    'GEOGRAPHIC CONVERGENCE': '地理汇聚',
+    'FOCAL POINTS': '焦点地区',
+    'Progress': '进度',
+    'Articles': '文章',
+
+    // Verification checklist
+    'Information Verification Checklist': '信息验证清单',
+    'Based on Bellingcat\'s OSH Framework': '基于 Bellingcat 的 OSH 框架',
+    'Verification Notes': '验证备注',
+    'No notes added': '暂无备注',
+    'Add verification note': '添加验证备注...',
+    'Add': '添加',
+    'Reset Checklist': '重置清单',
+    'VERIFIED': '已验证',
+    'LIKELY AUTHENTIC': '可能真实',
+    'UNCERTAIN': '不确定',
+    'UNRELIABLE': '不可靠',
+    'Recent timestamp confirmed': '时间戳已确认',
+    'Location verified': '地理位置已验证',
+    'Primary source identified': '已识别主要来源',
+    'Cross-referenced with other sources': '已与其他来源交叉验证',
+    'No AI generation artifacts': '无AI生成痕迹',
+    'Not recycled/old footage': '非回收/旧素材',
+    'Metadata verified': '元数据已验证',
+    'Context established': '上下文已建立',
   },
 };
 

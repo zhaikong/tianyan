@@ -80,7 +80,7 @@ export class GdeltIntelPanel extends Panel {
       this.setCount(data.articles.length);
     } catch (error) {
       console.error('[GdeltIntelPanel] Load error:', error);
-      this.showError('Failed to load intelligence feed');
+      this.showError(i18n.t('Failed to load intelligence feed'));
     }
   }
 

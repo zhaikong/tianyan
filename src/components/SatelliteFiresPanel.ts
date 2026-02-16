@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import type { FireRegionStats } from '@/services/firms-satellite';
+import { i18n } from '@/i18n';
 
 export class SatelliteFiresPanel extends Panel {
   private stats: FireRegionStats[] = [];
@@ -33,7 +34,7 @@ export class SatelliteFiresPanel extends Panel {
 
   private render(): void {
     if (this.stats.length === 0) {
-      this.setContent('<div class="panel-empty">No fire data available</div>');
+      this.setContent(`<div class="panel-empty">${i18n.t('No fire data available')}</div>`);
       return;
     }
 
@@ -59,16 +60,16 @@ export class SatelliteFiresPanel extends Panel {
         <table class="fires-table">
           <thead>
             <tr>
-              <th>Region</th>
-              <th>Fires</th>
-              <th>High</th>
-              <th>FRP</th>
+              <th>${i18n.t('Region')}</th>
+              <th>${i18n.t('Fires')}</th>
+              <th>${i18n.t('High')}</th>
+              <th>${i18n.t('FRP')}</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
           <tfoot>
             <tr class="fire-totals">
-              <td>Total</td>
+              <td>${i18n.t('Total')}</td>
               <td>${this.totalCount}</td>
               <td>${totalHigh}</td>
               <td>${totalFrp >= 1000 ? `${(totalFrp / 1000).toFixed(1)}k` : Math.round(totalFrp).toLocaleString()}</td>
@@ -77,7 +78,7 @@ export class SatelliteFiresPanel extends Panel {
         </table>
         <div class="fires-footer">
           <span class="fires-source">NASA FIRMS (VIIRS SNPP)</span>
-          <span class="fires-updated">${ago}</span>
+          <span class="fires-updated">${i18n.t('Last updated')} ${ago}</span>
         </div>
       </div>
       <style>

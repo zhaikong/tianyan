@@ -7,6 +7,7 @@ import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
 import { analysisWorker, enrichWithVelocityML, getClusterAssetContext, getAssetLabel, MAX_DISTANCE_KM, activityTracker, generateSummary } from '@/services';
 import { getSourcePropagandaRisk, getSourceTier, getSourceType } from '@/config/feeds';
 import { SITE_VARIANT } from '@/config';
+import { i18n } from '@/i18n';
 
 /** Threshold for enabling virtual scrolling */
 const VIRTUAL_SCROLL_THRESHOLD = 15;
@@ -149,7 +150,7 @@ export class NewsPanel extends Panel {
     this.summaryBtn.innerHTML = '<span class="panel-summarize-spinner"></span>';
     this.summaryBtn.disabled = true;
     this.summaryContainer.style.display = 'block';
-    this.summaryContainer.innerHTML = '<div class="panel-summary-loading">Generating summary...</div>';
+    this.summaryContainer.innerHTML = `<div class="panel-summary-loading">${i18n.t('Generating summary')}</div>`;
 
     try {
       const result = await generateSummary(this.currentHeadlines.slice(0, 8));
@@ -157,11 +158,11 @@ export class NewsPanel extends Panel {
         this.setCachedSummary(cacheKey, result.summary);
         this.showSummary(result.summary);
       } else {
-        this.summaryContainer.innerHTML = '<div class="panel-summary-error">Could not generate summary</div>';
+        this.summaryContainer.innerHTML = `<div class="panel-summary-error">${i18n.t('Could not generate summary')}</div>`;
         setTimeout(() => this.hideSummary(), 3000);
       }
     } catch {
-      this.summaryContainer.innerHTML = '<div class="panel-summary-error">Summary failed</div>';
+      this.summaryContainer.innerHTML = `<div class="panel-summary-error">${i18n.t('Summary failed')}</div>`;
       setTimeout(() => this.hideSummary(), 3000);
     } finally {
       this.isSummarizing = false;
@@ -230,7 +231,7 @@ export class NewsPanel extends Panel {
   public renderNews(items: NewsItem[]): void {
     if (items.length === 0) {
       this.setDataBadge('unavailable');
-      this.showError('No news available');
+      this.showError(i18n.t('No news available'));
       return;
     }
 
@@ -254,7 +255,7 @@ export class NewsPanel extends Panel {
     } catch (error) {
       if (requestId !== this.renderRequestId) return;
       console.error('[NewsPanel] Failed to cluster news:', error);
-      this.showError('Failed to cluster news');
+      this.showError(i18n.t('Failed to cluster news'));
     }
   }
 

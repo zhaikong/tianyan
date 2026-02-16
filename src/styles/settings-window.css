@@ -1,12 +1,12 @@
 /* Native-style settings window */
 .settings-shell {
-  --settings-bg: #2d2d2d;
-  --settings-surface: #383838;
-  --settings-surface-inset: #1e1e1e;
-  --settings-border: rgba(255, 255, 255, 0.1);
-  --settings-border-strong: rgba(255, 255, 255, 0.18);
-  --settings-text: #f0f0f0;
-  --settings-text-secondary: #999;
+  --settings-bg: #f5f5f7;
+  --settings-surface: #ffffff;
+  --settings-surface-inset: #f0f0f2;
+  --settings-border: rgba(0, 0, 0, 0.1);
+  --settings-border-strong: rgba(0, 0, 0, 0.18);
+  --settings-text: #1d1d1f;
+  --settings-text-secondary: #6e6e73;
   --settings-accent: #0A84FF;
   --settings-green: #30d158;
   --settings-yellow: #ffd60a;

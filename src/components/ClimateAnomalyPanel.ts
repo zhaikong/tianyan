@@ -2,6 +2,7 @@ import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
 import type { ClimateAnomaly } from '@/types';
 import { getSeverityColor, getSeverityIcon, formatDelta } from '@/services/climate';
+import { i18n } from '@/i18n';
 
 export class ClimateAnomalyPanel extends Panel {
   private anomalies: ClimateAnomaly[] = [];
@@ -37,7 +38,7 @@ export class ClimateAnomalyPanel extends Panel {
 
   private renderContent(): void {
     if (this.anomalies.length === 0) {
-      this.setContent('<div class="panel-empty">No significant anomalies detected</div>');
+      this.setContent(`<div class="panel-empty">${i18n.t('No significant anomalies detected')}</div>`);
       return;
     }
 
