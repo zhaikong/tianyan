@@ -11,6 +11,8 @@ export interface Translations {
   live: string;
   cached: string;
   unavailable: string;
+  Error: string;
+  Retry: string;
   'show methodology info': string;
   'drag to resize': string;
   'double-click to reset': string;
@@ -278,6 +280,18 @@ export interface Translations {
   'Not recycled/old footage': string;
   'Metadata verified': string;
   'Context established': string;
+
+  // Intelligence Report Panel
+  'Intelligence Report': string;
+  'Report Type': string;
+  'Daily Brief': string;
+  'Topic Report': string;
+  'Situation Assessment': string;
+  'Topic': string;
+  'Generate Report': string;
+  'Download JSON': string;
+  'Download Markdown': string;
+  'Generating report...': string;
 }
 
 export const translations: Record<string, Translations> = {
@@ -289,6 +303,8 @@ export const translations: Record<string, Translations> = {
     live: 'LIVE',
     cached: 'CACHED',
     unavailable: 'UNAVAILABLE',
+    Error: 'Error',
+    Retry: 'Retry',
     'show methodology info': 'Show methodology info',
     'drag to resize': 'Drag to resize (double-click to reset)',
     'double-click to reset': 'Double-click to reset',
@@ -558,6 +574,18 @@ export const translations: Record<string, Translations> = {
     'Not recycled/old footage': 'Not recycled/old footage',
     'Metadata verified': 'Metadata verified',
     'Context established': 'Context established',
+
+    // Intelligence Report Panel
+    'Intelligence Report': 'Intelligence Report',
+    'Report Type': 'Report Type',
+    'Daily Brief': 'Daily Brief',
+    'Topic Report': 'Topic Report',
+    'Situation Assessment': 'Situation Assessment',
+    'Topic': 'Topic',
+    'Generate Report': 'Generate Report',
+    'Download JSON': 'Download JSON',
+    'Download Markdown': 'Download Markdown',
+    'Generating report...': 'Generating report...',
   },
 
   zh: {
@@ -568,6 +596,8 @@ export const translations: Record<string, Translations> = {
     live: '实时',
     cached: '已缓存',
     unavailable: '不可用',
+    Error: '错误',
+    Retry: '重试',
     'show methodology info': '显示方法信息',
     'drag to resize': '拖动调整大小（双击重置）',
     'double-click to reset': '双击重置',
@@ -837,6 +867,18 @@ export const translations: Record<string, Translations> = {
     'Not recycled/old footage': '非回收/旧素材',
     'Metadata verified': '元数据已验证',
     'Context established': '上下文已建立',
+
+    // Intelligence Report Panel
+    'Intelligence Report': '情报报告',
+    'Report Type': '报告类型',
+    'Daily Brief': '每日简报',
+    'Topic Report': '专题报告',
+    'Situation Assessment': '态势评估',
+    'Topic': '专题',
+    'Generate Report': '生成报告',
+    'Download JSON': '下载 JSON',
+    'Download Markdown': '下载 Markdown',
+    'Generating report...': '正在生成报告...',
   },
 };
 

@@ -7,7 +7,7 @@
 
 :root {
   /* 主色系 - 国潮红金配色 */
-  --bg-primary: #C8202D;
+  --bg-primary: #F5F7FA;  /* 浅灰背景 */
   --surface-primary: #FFFFFF;
   --surface-secondary: #F8FAFC;
   --surface-tertiary: #F1F5F9;
@@ -15,6 +15,10 @@
   --text-primary: #1E293B;
   --text-secondary: #475569;
   --text-tertiary: #64748B;
+
+  /* 品牌色 - 用于强调元素 */
+  --brand-red: #C8202D;
+  --brand-gold: #D4AF37;
 
   /* 扩展红色系 */
   --red-50: #FFF1F2;
@@ -9626,30 +9630,44 @@ a.prediction-link:hover {
 
 .deckgl-time-slider .time-options {
   display: flex;
-  gap: 2px;
+  gap: 4px;
+  padding: 4px;
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .deckgl-time-slider .time-btn {
-  padding: 4px 8px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-dim);
+  padding: 8px 14px;
+  background: linear-gradient(180deg, rgba(60, 60, 60, 0.8) 0%, rgba(40, 40, 40, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
   font-family: inherit;
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .deckgl-time-slider .time-btn:hover {
+  background: linear-gradient(180deg, rgba(80, 80, 80, 0.9) 0%, rgba(60, 60, 60, 0.9) 100%);
   border-color: var(--accent-gold);
-  color: var(--accent-gold);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
 .deckgl-time-slider .time-btn.active {
-  background: var(--accent-gold);
-  border-color: var(--accent-gold);
-  color: var(--bg);
+  background: linear-gradient(180deg, var(--brand-red) 0%, #a81825 100%);
+  border-color: #ff6b6b;
+  color: #ffffff;
   font-weight: bold;
+  box-shadow: 0 4px 12px rgba(200, 32, 45, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(0);
 }
 
 /* deck.gl Layer Toggles */
@@ -9658,37 +9676,45 @@ a.prediction-link:hover {
   bottom: 10px;
   left: 10px;
   z-index: 100;
-  background: rgba(10, 15, 12, 0.95);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  max-width: 260px;
+  background: linear-gradient(180deg, rgba(25, 25, 25, 0.98) 0%, rgba(15, 15, 15, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  max-width: 280px;
   max-height: 50vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   flex-wrap: nowrap;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .deckgl-layer-toggles .toggle-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 10px;
-  border-bottom: 1px solid var(--border);
-  font-size: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 11px;
   font-weight: bold;
-  color: var(--text-dim);
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1px;
   flex-shrink: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
 }
 
 .deckgl-layer-toggles .toggle-collapse {
   background: none;
   border: none;
-  color: var(--text-dim);
+  color: #ffffff;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 12px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.deckgl-layer-toggles .toggle-collapse:hover {
+  opacity: 1;
 }
 
 .deckgl-layer-toggles .toggle-list {
@@ -9710,21 +9736,23 @@ a.prediction-link:hover {
 .deckgl-layer-toggles .layer-toggle {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 8px;
+  gap: 8px;
+  padding: 6px 10px;
   cursor: pointer;
-  border-radius: 3px;
-  border: 1px solid transparent;
-  background: rgba(30, 35, 32, 0.8);
-  transition: background 0.15s ease, border-color 0.15s ease;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(40, 40, 40, 0.6);
+  transition: all 0.2s ease;
   position: relative;
   font-size: 10px;
   text-transform: uppercase;
-  color: var(--text);
+  color: #ffffff;
 }
 
 .deckgl-layer-toggles .layer-toggle:hover {
-  background: rgba(50, 55, 52, 0.9);
+  background: rgba(60, 60, 60, 0.8);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(2px);
 }
 
 .deckgl-layer-toggles .layer-toggle input[type="checkbox"] {
@@ -9772,13 +9800,14 @@ a.prediction-link:hover {
 }
 
 .deckgl-layer-toggles .toggle-label {
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
   letter-spacing: 0.5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .deckgl-layer-toggles .layer-toggle.loading .toggle-label {
@@ -12200,4 +12229,169 @@ body.has-critical-banner .panels-grid {
   .cb-grid { grid-template-columns: 1fr; }
   .cb-timeline-section { display: none; }
   body > *:not(.country-brief-overlay) { display: none !important; }
+}
+
+/* Intelligence Report Panel */
+.intelligence-report-panel .report-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface-secondary, #f8fafc);
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
+}
+
+.intelligence-report-panel .report-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.intelligence-report-panel .report-control-group label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary, #64748b);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.intelligence-report-panel .report-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 6px;
+  background: var(--surface-primary, #fff);
+  color: var(--text-primary, #1e293b);
+  font-size: 13px;
+  min-width: 140px;
+  cursor: pointer;
+}
+
+.intelligence-report-panel .report-select:focus {
+  outline: none;
+  border-color: var(--brand-red, #c8202d);
+}
+
+.intelligence-report-panel .report-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intelligence-report-panel .generate-btn {
+  background: var(--brand-red, #c8202d);
+  color: white;
+}
+
+.intelligence-report-panel .generate-btn:hover {
+  background: #a81825;
+}
+
+.intelligence-report-panel .generate-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.intelligence-report-panel .download-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.intelligence-report-panel .download-btn {
+  background: var(--surface-primary, #fff);
+  color: var(--text-primary, #1e293b);
+  border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.intelligence-report-panel .download-btn:hover {
+  background: var(--surface-secondary, #f8fafc);
+  border-color: var(--brand-red, #c8202d);
+}
+
+.intelligence-report-panel .report-content {
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.intelligence-report-panel .report-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 12px;
+  color: var(--text-secondary, #64748b);
+}
+
+.intelligence-report-panel .loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border-color, #e2e8f0);
+  border-top-color: var(--brand-red, #c8202d);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.intelligence-report-panel .report-body {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary, #1e293b);
+}
+
+.intelligence-report-panel .report-body h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: var(--brand-red, #c8202d);
+}
+
+.intelligence-report-panel .report-body h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 16px 0 8px 0;
+  color: var(--text-primary, #1e293b);
+}
+
+.intelligence-report-panel .report-body h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 12px 0 6px 0;
+}
+
+.intelligence-report-panel .report-body p {
+  margin: 0 0 8px 0;
+}
+
+.intelligence-report-panel .report-body ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.intelligence-report-panel .report-body li {
+  margin: 4px 0;
+}
+
+.intelligence-report-panel .report-body strong {
+  font-weight: 600;
+  color: var(--text-primary, #1e293b);
+}
+
+.intelligence-report-panel .report-error {
+  text-align: center;
+  padding: 20px;
+  color: var(--error, #dc2626);
+}
+
+.intelligence-report-panel .no-data {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-secondary, #64748b);
 }
